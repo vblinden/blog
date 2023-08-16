@@ -70,24 +70,24 @@
                 email, SMS or by pinging a webhook.
             </dd>
 
-            <dt class="mt-3 fw-normal">
-                <x-link href="https://bin.vblinden.dev" target="_blank">bin.vblinden.dev</x-link>
-            </dt>
-            <dd>
-                Bin is an online content-hosting service where users can store
-                plain text publicly or privately for a specific duration. Client
-                side encryption is optional.
-            </dd>
+            {{--            <dt class="mt-3 fw-normal">--}}
+            {{--                <x-link href="https://bin.vblinden.dev" target="_blank">bin.vblinden.dev</x-link>--}}
+            {{--            </dt>--}}
+            {{--            <dd>--}}
+            {{--                Bin is an online content-hosting service where users can store--}}
+            {{--                plain text publicly or privately for a specific duration. Client--}}
+            {{--                side encryption is optional.--}}
+            {{--            </dd>--}}
 
-            <dt class="mt-3 fw-normal">
-                <x-link href="https://www.drinkmorewater.app" target="_blank">drinkmorewater.app</x-link>
-            </dt>
-            <dd>
-                This app does what is says: Help you drink more water. You can
-                configure the kind of glasses you drink from, the type of
-                beverages you drink and easily keep track of your daily water
-                intake.
-            </dd>
+            {{--            <dt class="mt-3 fw-normal">--}}
+            {{--                <x-link href="https://www.drinkmorewater.app" target="_blank">drinkmorewater.app</x-link>--}}
+            {{--            </dt>--}}
+            {{--            <dd>--}}
+            {{--                This app does what is says: Help you drink more water. You can--}}
+            {{--                configure the kind of glasses you drink from, the type of--}}
+            {{--                beverages you drink and easily keep track of your daily water--}}
+            {{--                intake.--}}
+            {{--            </dd>--}}
 
             <dt class="mt-3 fw-normal">
                 <x-link href="https://nederboard.nl" target="_blank">nederboard.nl</x-link>
