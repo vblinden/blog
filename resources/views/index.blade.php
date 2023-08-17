@@ -10,8 +10,8 @@
             useful enough to put online. Please enjoy.
         </p>
 
-        <p class="mt-4 text-sm text-slate-500 dark:text-zinc-600">
-            <strong>Disclaimer:</strong> The opinions expressed herein are my own personal opinions and do not
+        <p class="mt-2 text-base text-slate-500 dark:text-zinc-600">
+            The opinions expressed herein are my own personal opinions and do not
             represent my employer’s view in any way.
         </p>
     </div>
@@ -70,14 +70,14 @@
                 email, SMS or by pinging a webhook.
             </dd>
 
-            {{--            <dt class="mt-3 fw-normal">--}}
-            {{--                <x-link href="https://bin.vblinden.dev" target="_blank">bin.vblinden.dev</x-link>--}}
-            {{--            </dt>--}}
-            {{--            <dd>--}}
-            {{--                Bin is an online content-hosting service where users can store--}}
-            {{--                plain text publicly or privately for a specific duration. Client--}}
-            {{--                side encryption is optional.--}}
-            {{--            </dd>--}}
+            <dt class="mt-3 fw-normal">
+                <x-link href="https://bin.vblinden.dev" target="_blank">bin.vblinden.dev</x-link>
+            </dt>
+            <dd>
+                Bin is an online content-hosting service where users can store
+                plain text publicly or privately for a specific duration. Client
+                side encryption is optional.
+            </dd>
 
             {{--            <dt class="mt-3 fw-normal">--}}
             {{--                <x-link href="https://www.drinkmorewater.app" target="_blank">drinkmorewater.app</x-link>--}}
