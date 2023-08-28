@@ -1,5 +1,5 @@
 <x-layout title="Retrieve submodules with Git">
-    <x-header title="Retrieve submodules with Git" date="August 29, 2019" reading-time="1"/>
+    <x-header title="Retrieve submodules with Git" date="August 29, 2019" reading-time="1" />
 
     <p class="mb-4">
         Yesterday I had a really hard time with pulling in a submodule from an
