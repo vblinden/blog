@@ -61,7 +61,7 @@
     </div>
 
     <script type="module" src="https://www.kritiek.app/widget?v=1"></script>
-    <kritiek-widget survey-id="99fff8b7-28be-47cb-9f0e-397b60b848eb"></kritiek-widget>
+    <kritiek-widget survey-id="9a484d81-eeaf-4cce-b644-53f9dc89a8da"></kritiek-widget>
 </body>
 
 </body>
