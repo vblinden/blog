@@ -34,6 +34,13 @@ func main() {
 		a.Template.Render(w, r, http.StatusOK, "index.html", struct{}{})
 	})
 
+	r.Get("/posts/{name}", func(w http.ResponseWriter, r *http.Request) {
+		postName := chi.URLParam(r, "name")
+		template := fmt.Sprintf("%s.html", postName)
+
+		a.Template.Render(w, r, http.StatusOK, template, struct{}{})
+	})
+
 	fmt.Println("starting server on :3000")
 	http.ListenAndServe(":3000", r)
 }
