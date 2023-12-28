@@ -1,12 +1,3 @@
-FROM node:latest as node
-
-WORKDIR /app
-
-COPY . .
-
-RUN npm ci
-RUN npx tailwindcss -i templates/css/styles.css -o static/css/app.css --minify
-
 FROM golang:1.21-alpine as builder
 
 RUN go install github.com/a-h/templ/cmd/templ@latest
@@ -25,7 +16,6 @@ WORKDIR /
 
 COPY --from=builder /usr/src/app/bin /bin
 COPY --from=builder /usr/src/app/templates /templates
-COPY --from=node /app/static/css /static/css
 
 EXPOSE 3000
 
