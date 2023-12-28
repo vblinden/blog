@@ -3,6 +3,7 @@ package main
 import (
 	"blog/templates/templs"
 	"blog/templates/templs/errors"
+	"blog/templates/templs/posts"
 	"fmt"
 	"net/http"
 	"os"
@@ -32,6 +33,7 @@ func main() {
 
 		switch postName {
 		case "never-forget-backups":
+			posts.NeverForgetBackups().Render(r.Context(), w)
 		default:
 			errors.NotFound().Render(r.Context(), w)
 		}
