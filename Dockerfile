@@ -9,9 +9,12 @@ RUN npm run build
 
 FROM golang:1.21-alpine as builder
 
+RUN go install github.com/a-h/templ/cmd/templ@latest
+
 WORKDIR /usr/src/app
 
 COPY go.mod go.sum ./
+RUN templ generate
 RUN go mod download && go mod verify
 
 COPY . .
