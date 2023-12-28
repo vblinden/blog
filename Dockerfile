@@ -1,3 +1,12 @@
+FROM node:latest as node
+
+WORKDIR /app
+
+COPY . .
+
+RUN npm ci
+RUN npm run build
+
 FROM golang:1.21-alpine as builder
 
 RUN go install github.com/a-h/templ/cmd/templ@latest
@@ -16,7 +25,7 @@ WORKDIR /
 
 COPY --from=builder /usr/src/app/bin /bin
 COPY --from=builder /usr/src/app/templates /templates
-COPY --from=builder /usr/src/app/static /static
+COPY --from=node /app/static/css /static/css
 
 EXPOSE 3000
 
