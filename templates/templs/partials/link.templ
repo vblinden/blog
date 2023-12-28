@@ -1,6 +1,6 @@
 package partials
 
-templ Link(href string, description string) {
-	<a href="{ href }" target="" rel="noreferrer"
+templ Link(description string, attrs templ.Attributes) {
+	<a { attrs... } rel="noreferrer"
 		class="text-blue-600 hover:text-blue-800 dark:text-zinc-200 dark:underline dark:hover:text-white">{ description }</a>
 }

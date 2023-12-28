@@ -1,13 +1,17 @@
 package templs
 
-templ Layout() {
+templ Layout(title string) {
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
 			<meta charset="utf-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-			<title>– vblinden</title>
+			if title != "" {
+				<title>{ title} – vblinden</title>
+			} else {
+				<title>vblinden.</title>
+			}
 
 			<meta
  				name="description"
