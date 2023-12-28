@@ -34,8 +34,18 @@ func main() {
 		switch postName {
 		case "never-forget-backups":
 			posts.NeverForgetBackups().Render(r.Context(), w)
+		case "retrieve-submodules-with-git":
+			posts.RetrieveSubmodulesWithGit().Render(r.Context(), w)
+		case "setup-lets-encrypt-with-nginx":
+			posts.SetupLetsEncryptWithNginx().Render(r.Context(), w)
+		case "deploying-an-application-using-dokku-with-https-and-redirects":
+			posts.DeployingAnApplicationUsingDokkuWithHttpsAndRedirects().Render(r.Context(), w)
 		case "what-did-you-undesign":
 			posts.WhatDidYouUndesign().Render(r.Context(), w)
+		case "how-to-install-amqp-on-macos":
+			posts.HowToInstallAmqpOnMacOs().Render(r.Context(), w)
+		case "implement-rigorously-the-five-step-process":
+			posts.ImplementRigorouslyTheFiveStepProcess().Render(r.Context(), w)
 		default:
 			errors.NotFound().Render(r.Context(), w)
 		}
