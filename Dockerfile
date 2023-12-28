@@ -5,7 +5,7 @@ WORKDIR /app
 COPY . .
 
 RUN npm ci
-RUN npx tailwindcss -i templates/css/styles.css -o static/css/app.css
+RUN npx tailwindcss -i templates/css/styles.css -o static/css/app.css --minify
 
 FROM golang:1.21-alpine as builder
 
