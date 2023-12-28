@@ -1,6 +1,7 @@
 package main
 
 import (
+	"blog/templates/templs"
 	"fmt"
 	"net/http"
 	"os"
@@ -31,7 +32,7 @@ func main() {
 	fileServer(r)
 
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		a.Template.Render(w, r, http.StatusOK, "index.html", struct{}{})
+		templs.Hello("Vincent").Render(r.Context(), w)
 	})
 
 	r.Get("/posts/{name}", func(w http.ResponseWriter, r *http.Request) {
