@@ -2,6 +2,7 @@ package main
 
 import (
 	"blog/templates/templs"
+	"blog/templates/templs/errors"
 	"fmt"
 	"net/http"
 	"os"
@@ -28,7 +29,12 @@ func main() {
 
 	r.Get("/posts/{name}", func(w http.ResponseWriter, r *http.Request) {
 		postName := chi.URLParam(r, "name")
-		fmt.Sprintf("%s.html", postName)
+
+		switch postName {
+		case "never-forget-backups":
+		default:
+			errors.NotFound().Render(r.Context(), w)
+		}
 	})
 
 	fmt.Println("starting server on :3000")
@@ -41,7 +47,7 @@ func fileServer(r chi.Router) {
 	root := http.Dir(filepath.Join(workDir, "static"))
 
 	if strings.ContainsAny(path, "{}*") {
-		panic("Static files do not permit any URL parameters.")
+		panic("static files do not permit any URL parameters.")
 	}
 
 	if path != "/" && path[len(path)-1] != '/' {

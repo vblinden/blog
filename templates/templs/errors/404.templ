@@ -1,0 +1,17 @@
+package errors
+
+import (
+	"blog/templates/templs"
+	"blog/templates/templs/partials"
+)
+
+templ NotFound() {
+	@templs.Layout("Not found") {
+		<p>Sorry, but we can't find the page you're looking for.</p>
+		<p class="mt-3">
+			Click 
+			@partials.Link("here", templ.Attributes{"href":"/"})
+			&nbsp;to return home.
+		</p>
+	}
+}
