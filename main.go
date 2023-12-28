@@ -34,6 +34,8 @@ func main() {
 		switch postName {
 		case "never-forget-backups":
 			posts.NeverForgetBackups().Render(r.Context(), w)
+		case "what-did-you-undesign":
+			posts.WhatDidYouUndesign().Render(r.Context(), w)
 		default:
 			errors.NotFound().Render(r.Context(), w)
 		}
