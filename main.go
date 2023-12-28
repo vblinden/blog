@@ -12,16 +12,7 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 )
 
-var a Application
-
 func main() {
-	a := Application{
-		Error:    Error{},
-		Template: Template{},
-	}
-
-	a.Boot()
-
 	r := chi.NewRouter()
 
 	r.Use(middleware.RequestID)
@@ -32,14 +23,12 @@ func main() {
 	fileServer(r)
 
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		templs.Hello("Vincent").Render(r.Context(), w)
+		templs.Index().Render(r.Context(), w)
 	})
 
 	r.Get("/posts/{name}", func(w http.ResponseWriter, r *http.Request) {
 		postName := chi.URLParam(r, "name")
-		template := fmt.Sprintf("%s.html", postName)
-
-		a.Template.Render(w, r, http.StatusOK, template, struct{}{})
+		fmt.Sprintf("%s.html", postName)
 	})
 
 	fmt.Println("starting server on :3000")
