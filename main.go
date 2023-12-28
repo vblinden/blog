@@ -12,6 +12,7 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	gonanoid "github.com/matoous/go-nanoid/v2"
 )
 
 func main() {
@@ -25,7 +26,9 @@ func main() {
 	fileServer(r)
 
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		templs.Index().Render(r.Context(), w)
+		id, _ := gonanoid.New()
+
+		templs.Index(id).Render(r.Context(), w)
 	})
 
 	r.Get("/posts/{name}", func(w http.ResponseWriter, r *http.Request) {

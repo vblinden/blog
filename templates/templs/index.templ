@@ -2,7 +2,7 @@ package templs
 
 import "blog/templates/templs/partials"
 
-templ Index() {
+templ Index(randomId string) {
 	@Layout("") {
 		<div class="my-8">
 			<p class="text-justify">
@@ -92,7 +92,7 @@ templ Index() {
 		<section class="mb-8">
 			<h2 class="text-2xl font-bold font-display mb-3">Contact.</h2>
 			<p>
-				You can reach me at <span class="lowercase"></span>.
+				You can reach me at <span class="lowercase">{randomId} [at] vblinden.dev</span>.
 			</p>
 		</section>
 	}
