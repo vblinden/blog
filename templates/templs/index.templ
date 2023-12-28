@@ -19,29 +19,19 @@ templ Index() {
 			<h2 class="font-bold font-display mb-3 text-2xl">Posts.</h2>
 			<ul class="list-inside list-disc ml-6">
 				<li>
-					<x-link href="/posts/implement-rigorously-the-five-step-process">
-						Implement Rigorously: The Five Step Process
-					</x-link>
+					@partials.Link("Implement Rigorously: The Five Step Process", templ.Attributes{"href":"/posts/implement-rigorously-the-five-step-process"})
 				</li>
 				<li>
-					<x-link href="/posts/how-to-install-amqp-on-macos">
-						How to install AMQP on macOS
-					</x-link>
+					@partials.Link("How to install AMQP on macOS", templ.Attributes{"href":"/posts/how-to-install-amqp-on-macos"})
 				</li>
 				<li>
-					<x-link href="/posts/what-did-you-undesign">
-						What did you undesign?
-					</x-link>
+					@partials.Link("What did you undesign?", templ.Attributes{"href":"/posts/what-did-you-undesign"})
 				</li>
 				<li>
-					<x-link href="/posts/deploying-an-application-using-dokku-with-https-and-redirects">
-						Deploying an application using Dokku (with HTTPS and redirects)
-					</x-link>
+					@partials.Link("Deploying an application using Dokku (with HTTPS and redirects)", templ.Attributes{"href":"/posts/deploying-an-application-using-dokku-with-https-and-redirects"})
 				</li>
 				<li>
-					<x-link href="/posts/setup-lets-encrypt-with-nginx">
-						Setup Let's Encrypt with Nginx
-					</x-link>
+					@partials.Link("Setup Let's Encrypt with Nginx", templ.Attributes{"href":"/posts/setup-lets-encrypt-with-nginx"})
 				</li>
 				<li>
 					@partials.Link("Retrieve submodules with Git", templ.Attributes{"href":"/posts/retrieve-submodules-with-git"})
@@ -55,7 +45,7 @@ templ Index() {
 			<h2 class="font-bold font-display mb-3 text-2xl">Projects.</h2>
 			<dl>
 				<dt class="fw-normal">
-					<x-link href="https://www.checkeroni.com" target="_blank">checkeroni.com</x-link>
+					@partials.Link("checkeroni.com", templ.Attributes{"href":"https://www.checkeroni.com","target":"_blank"})
 				</dt>
 				<dd>
 					Minimal, simple and inexpensive 24/7 uptime monitoring
@@ -64,14 +54,14 @@ templ Index() {
 					email, SMS or by pinging a webhook.
 				</dd>
 				<dt class="mt-3 fw-normal">
-					<x-link href="https://www.kritiek.app" target="_blank">kritiek.app</x-link>
+					@partials.Link("kritiek.app", templ.Attributes{"href":"https://www.kritiek.app","target":"_blank"})
 				</dt>
 				<dd>
 					Enhance user engagement, gain valuable insights, and boost your business success with Kritiek – the
 					ultimate feedback widget application.
 				</dd>
 				<dt class="mt-3 fw-normal">
-					<x-link href="https://bin.vblinden.dev" target="_blank">bin.vblinden.dev</x-link>
+					@partials.Link("bin.vblinden.dev", templ.Attributes{"href":"https://bin.vblinden.dev","target":"_blank"})
 				</dt>
 				<dd>
 					Bin is an online content-hosting service where users can store
@@ -79,23 +69,23 @@ templ Index() {
 					side encryption is optional.
 				</dd>
 				<dt class="mt-3 fw-normal">
-					<x-link href="https://nederboard.nl" target="_blank">nederboard.nl</x-link>
+					@partials.Link("nederboard.nl", templ.Attributes{"href":"https://nederboard.nl","target":"_blank"})
 				</dt>
 				<dd>
 					A soundboard with snippets from all kinds of different meme videos
-					in the Netherlands. Including classics like
-					<x-link href="https://nederboard.nl/board/helemaalknettah" target="_blank">Helemaal knettah</x-link>
-					and
-					<x-link href="https://nederboard.nl/board/rustahg" target="_blank">Rustahg</x-link>
-					plus a dozen more!
+					in the Netherlands. Including classics like&nbsp;
+					@partials.Link("Helemaal knettah", templ.Attributes{"href":"https://nederboard.nl/board/helemaalknettah","target":"_blank"})
+					&nbsp;and&nbsp;
+					@partials.Link("Rustahg", templ.Attributes{"href":"https://nederboard.nl/board/rustahg","target":"_blank"})
+					&nbsp;plus a dozen more!
 				</dd>
 				<dt class="mt-3 fw-normal">
-					<x-link href="https://iloveitshipit.com" target="_blank">iloveitshipit.com</x-link>
+					@partials.Link("iloveitshipit.com", templ.Attributes{"href":"https://iloveitshipit.com","target":"_blank"})
 				</dt>
 				<dd>
-					Small and for fun soundboard of the legendary words spoken by
-					<x-link href="https://www.hanselman.com" target="_blank">Scott Hanselman</x-link>
-					during a .NET conference back in the day.
+					Small and for fun soundboard of the legendary words spoken by&nbsp;
+					@partials.Link("Scott Hanselman", templ.Attributes{"href":"https://www.hanselman.com","target":"_blank"})
+					&nbsp;during a .NET conference back in the day.
 				</dd>
 			</dl>
 		</section>
