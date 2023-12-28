@@ -1,18 +1,30 @@
 {{define "layout"}}
 <!doctype html>
 <html lang='en'>
-    <head>
-        <meta charset='utf-8'>
-        <title>{{template "title" .}} – vblinden</title>
-    </head>
-    <body>
-        <header>
-            <h1><a href='/'>vblinden.</a></h1>
-        </header>
-        <main>
-            {{template "main" .}}
-        </main>
-        <footer>Powered by <a href='https://golang.org/'>Go</a></footer>
-    </body>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{template "title" .}} – vblinden</title>
+
+    <meta name="description"
+        content="Hello friends, my name is Vincent van der Linden. I am currently working as a software engineer at team.blue. On this website you can find some thoughts and other babblings that I thought were important or useful enough to put online. Please enjoy." />
+
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon" />
+
+    <link href="/static/css/app.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1><a href='/'>vblinden.</a></h1>
+    </header>
+    <main>
+        {{template "main" .}}
+    </main>
+    <footer>Powered by <a href='https://golang.org/'>Go</a></footer>
+</body>
+
 </html>
 {{end}}

@@ -3,6 +3,9 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
+	"path/filepath"
+	"strings"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -25,9 +28,7 @@ func main() {
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
 
-	fileServer := http.FileServer(http.Dir("./static"))
-
-	r.Mount("/static", fileServer)
+	fileServer(r)
 
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		a.Template.Render(w, r, http.StatusOK, "index.html", struct{}{})
@@ -35,4 +36,28 @@ func main() {
 
 	fmt.Println("starting server on :3000")
 	http.ListenAndServe(":3000", r)
+}
+
+func fileServer(r chi.Router) {
+	path := "/static"
+	workDir, _ := os.Getwd()
+	root := http.Dir(filepath.Join(workDir, "static"))
+
+	if strings.ContainsAny(path, "{}*") {
+		panic("Static files do not permit any URL parameters.")
+	}
+
+	if path != "/" && path[len(path)-1] != '/' {
+		r.Get(path, http.RedirectHandler(path+"/", 301).ServeHTTP)
+		path += "/"
+	}
+
+	path += "*"
+
+	r.Get(path, func(w http.ResponseWriter, r *http.Request) {
+		rctx := chi.RouteContext(r.Context())
+		pathPrefix := strings.TrimSuffix(rctx.RoutePattern(), "/*")
+		fs := http.StripPrefix(pathPrefix, http.FileServer(root))
+		fs.ServeHTTP(w, r)
+	})
 }
