@@ -8,11 +8,6 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 )
 
-type Application struct {
-	Error    Error
-	Template Template
-}
-
 var a Application
 
 func main() {
@@ -21,7 +16,7 @@ func main() {
 		Template: Template{},
 	}
 
-	a.Template.NewCache()
+	a.Boot()
 
 	r := chi.NewRouter()
 

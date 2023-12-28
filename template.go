@@ -11,7 +11,7 @@ type Template struct {
 	cache map[string]*template.Template
 }
 
-func (t *Template) NewCache() {
+func (t *Template) warmupCache() {
 	t.cache = map[string]*template.Template{}
 
 	pages, err := filepath.Glob("./templates/*.html")
