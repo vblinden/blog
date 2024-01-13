@@ -49,6 +49,8 @@ func main() {
 			posts.HowToInstallAmqpOnMacOs().Render(r.Context(), w)
 		case "implement-rigorously-the-five-step-process":
 			posts.ImplementRigorouslyTheFiveStepProcess().Render(r.Context(), w)
+		case "starship-mission-to-mars":
+			posts.StarshipMissionToMars().Render(r.Context(), w)
 		default:
 			errors.NotFound().Render(r.Context(), w)
 		}

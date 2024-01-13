@@ -1,0 +1,19 @@
+package posts
+
+import (
+	"blog/templates"
+	"blog/templates/partials"
+)
+
+templ StarshipMissionToMars() {
+	@templates.Layout("Starship mission to Mars") {
+		@partials.Header("Starship mission to Mars", "January 13, 2024", "1")
+		<p class="mb-4">Just a video that I want to archive in case it will disappear from the internet.</p>
+		<p class="mb-4">Enjoy the video.</p>
+		<br/>
+		<br/>
+		<video controls>
+			<source src="/static/starship-mission-to-mars.mp4" type="video/mp4"/>
+		</video>
+	}
+}
