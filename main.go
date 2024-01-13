@@ -1,9 +1,9 @@
 package main
 
 import (
-	"blog/templates/templs"
-	"blog/templates/templs/errors"
-	"blog/templates/templs/posts"
+	"blog/templates"
+	"blog/templates/errors"
+	"blog/templates/posts"
 	"fmt"
 	"net/http"
 	"os"
@@ -28,7 +28,7 @@ func main() {
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		id, _ := gonanoid.New()
 
-		templs.Index(id).Render(r.Context(), w)
+		templates.Index(id).Render(r.Context(), w)
 	})
 
 	r.Get("/posts/{name}", func(w http.ResponseWriter, r *http.Request) {

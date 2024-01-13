@@ -1,0 +1,61 @@
+package posts
+
+import (
+	"blog/templates"
+	"blog/templates/partials"
+)
+
+templ WhatDidYouUndesign() {
+	@templates.Layout("What did you undesign?") {
+		@partials.Header("What did you undesign?", "September 28, 2020", "1")
+		<p class="mb-4">
+			In the video below Eric Berger from Ars Technica asks a question on how Elon Musk and the team at SpaceX build an iteration of Starship within 4 to 5 months and how they’d go so fast. Here is the transcript for those who want to read instead of listening:
+		</p>
+		<p>
+			<strong>Eric Berger:</strong>
+		</p>
+		<p class="mb-4">How did you go so fast?</p>
+		<p>
+			<strong>Elon Musk:</strong>
+		</p>
+		<p class="mb-4">
+			I have this mantra: if the schedule is long, it’s wrong. If it’s
+			tight, it’s right.
+		</p>
+		<p class="mb-4">
+			Basically just have recursive improvement on a schedule.
+		</p>
+		<p class="mb-4">
+			Say with every feedback loop: Did this make it go faster? If it did
+			not, we are going to need to fix it. If the design takes a long time
+			to build, it’s the wrong design. This is the fundamental thing. The
+			tendency is to complicate things.
+		</p>
+		<p class="mb-4">
+			The best process is no process. It weights nothing, it costs nothing.
+			Can’t go wrong. As obvious as that sounds.
+			<strong>
+				The best part is no part
+			</strong>.
+		</p>
+		<p class="mb-4">
+			The thing I’m most impressed with when I have the design meetings at
+			SpaceX is: what did you <strong>undesign</strong>?
+		</p>
+		<p class="mb-4">
+			<strong>Undesigning</strong> is the best thing.
+		</p>
+		<p class="mb-4">
+			<strong>Just delete it.</strong>
+		</p>
+		<p class="mb-4">
+			<strong>That’s the best thing.</strong>
+		</p>
+		<br/>
+		<br/>
+		<p class="mb-4">Enjoy the video.</p>
+		<video controls>
+			<source src="/static/undesigning-is-the-best-thing.mp4" type="video/mp4"/>
+		</video>
+	}
+}
