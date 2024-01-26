@@ -1,5 +1,3 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
-
 /** @type {import('tailwindcss').Config} */
 export default {
     content: [
@@ -14,12 +12,7 @@ export default {
                 xl: '960px',
             },
         },
-        extend: {
-            fontFamily: {
-                sans: ['Inter', ...defaultTheme.fontFamily.sans],
-            },
-        },
+        extend: {},
     },
     plugins: [],
 }
-

@@ -15,6 +15,11 @@
         <h2 class="font-bold font-display mb-3 text-2xl">Posts.</h2>
         <ul class="list-inside list-disc ml-6">
             <li>
+                <x-link href="/posts/starship-mission-to-mars">
+                    Starship Mission to Mars
+                </x-link>
+            </li>
+            <li>
                 <x-link href="/posts/implement-rigorously-the-five-step-process">
                     Implement Rigorously: The Five Step Process
                 </x-link>
