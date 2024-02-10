@@ -120,12 +120,12 @@
         </dl>
     </section>
 
-    <p class="mb-4 font-bold">This is for my nephew Sam! Hello from the internet!</p>
-
     <section class="mb-8">
         <h2 class="text-2xl font-bold font-display mb-3">Contact.</h2>
         <p>
             You can reach me at <span class="lowercase">{{ Str::random(12) }} [at] vblinden.dev</span>.
         </p>
     </section>
+
+    <p class="mb-4 font-bold text-xs">This is for my nephew Sam, he is 9 years old! Hello from the internet!</p>
 </x-layout>
