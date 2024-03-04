@@ -26,6 +26,7 @@ WORKDIR /
 COPY --from=builder /usr/src/app/bin /bin
 COPY --from=builder /usr/src/app/templates /templates
 COPY --from=builder /usr/src/app/static /static
+COPY --from=builder /usr/src/app/views /views
 COPY --from=node /app/static/css /static/css
 
 EXPOSE 3000
