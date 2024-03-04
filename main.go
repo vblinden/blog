@@ -31,11 +31,9 @@ func main() {
 	app.Get("/", func(c fiber.Ctx) error {
 		id, _ := gonanoid.New()
 
-		return c.SendString(id)
-
-		// return c.Render("index", fiber.Map{
-		// 	"id": id,
-		// })
+		return c.Render("index", fiber.Map{
+			"id": id,
+		})
 	})
 
 	log.Fatal(app.Listen(":3000"))
