@@ -29,7 +29,7 @@ func main() {
 	app.Static("/static", "./static")
 
 	app.Get("/", func(c fiber.Ctx) error {
-		id, _ := gonanoid.New()
+		id, _ := gonanoid.Generate("vblinden", 6)
 
 		return Render(c, templates.Index(id))
 	})
@@ -57,6 +57,10 @@ func main() {
 		default:
 			return Render(c, errors.NotFound())
 		}
+	})
+
+	app.Use(func(c fiber.Ctx) error {
+		return Render(c, errors.NotFound())
 	})
 
 	log.Fatal(app.Listen(":3000"))
