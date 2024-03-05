@@ -17,19 +17,21 @@ templ RetrieveSubmodulesWithGit() {
 		</p>
 		<p class="mb-4">
 			Finally I found an&nbsp;
-			@partials.Link("answer", templ.Attributes{"href":"https://stackoverflow.com/a/44692935","target":"_blank"})
+			@partials.Link("answer", templ.Attributes{"href": "https://stackoverflow.com/a/44692935", "target": "_blank"})
 			&nbsp;on StackOverflow that didn't quite work, but send me in the right
 			direction. Eventually I gave up the DuckDuckGoing and did what I
 			should have done in the first place: Look at the&nbsp;
-			@partials.Link("Git documentation", templ.Attributes{"href":"https://git-scm.com/docs/git-submodule","target":"_blank"})
+			@partials.Link("Git documentation", templ.Attributes{"href": "https://git-scm.com/docs/git-submodule", "target": "_blank"})
 			&nbsp;for the submodule command.
 		</p>
 		<p class="mb-4">
 			The command I ran (from the root of my git folder) that worked for me
 			after I cloned my repository was:
 		</p>
-		<pre class="mb-4">
-			git submodule update --init --recursive
+		<pre class="mb-4 command-line" data-user="vblinden">
+			<code class="language-shell">
+				git submodule update --init --recursive
+			</code>
 		</pre>
 		<p>
 			An important lesson learned: If there is documentation available, consult that
