@@ -5,7 +5,7 @@ go 1.21
 require github.com/go-chi/chi/v5 v5.0.11
 
 require (
-	github.com/a-h/templ v0.2.513
+	github.com/a-h/templ v0.2.598
 	github.com/gofiber/fiber/v3 v3.0.0-20240304183621-77770a9db1f8
 	github.com/gofiber/template/html/v2 v2.1.1
 	github.com/matoous/go-nanoid/v2 v2.0.0
