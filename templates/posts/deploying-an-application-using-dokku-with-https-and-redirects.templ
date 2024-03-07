@@ -12,15 +12,15 @@ templ DeployingAnApplicationUsingDokkuWithHttpsAndRedirects() {
 			If you are creating a web application, you have to deploy it at some
 			point. Most of the time I choose a service or provider that manages
 			the server for me and I just have to deploy the application. Think&nbsp;
-			@partials.Link("Heroku", templ.Attributes{"href": "https://www.heroku.com/", "target":"_blank"})
+			@partials.Link("Heroku", templ.Attributes{"href": "https://www.heroku.com/", "target": "_blank"})
 			,&nbsp;
-			@partials.Link("Fortrabbit", templ.Attributes{"href": "https://www.fortrabbit.com/", "target":"_blank"})
+			@partials.Link("Fortrabbit", templ.Attributes{"href": "https://www.fortrabbit.com/", "target": "_blank"})
 			,&nbsp;
-			@partials.Link("Google Cloud", templ.Attributes{"href": "https://cloud.google.com/", "target":"_blank"})
+			@partials.Link("Google Cloud", templ.Attributes{"href": "https://cloud.google.com/", "target": "_blank"})
 			,&nbsp;
-			@partials.Link("Microsoft Azure", templ.Attributes{"href": "https://azure.microsoft.com/en-us/", "target":"_blank"})
+			@partials.Link("Microsoft Azure", templ.Attributes{"href": "https://azure.microsoft.com/en-us/", "target": "_blank"})
 			&nbsp;or&nbsp;
-			@partials.Link("AWS", templ.Attributes{"href": "https://aws.amazon.com/", "target":"_blank"})
+			@partials.Link("AWS", templ.Attributes{"href": "https://aws.amazon.com/", "target": "_blank"})
 			.
 			These services are great and work really well, however they can
 			really add up in cost when you want to scale up an application or have
@@ -38,7 +38,7 @@ templ DeployingAnApplicationUsingDokkuWithHttpsAndRedirects() {
 			yourself and that can be a real hassle if you don’t have much
 			experience and knowledge about managing a server. Luckily there are a
 			lot of tutorials for&nbsp;
-			@partials.Link("initial server setup", templ.Attributes{"href": "https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-20-04", "target":"_blank"})
+			@partials.Link("initial server setup", templ.Attributes{"href": "https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-20-04", "target": "_blank"})
 			&nbsp;out there which you can follow. Don’t forget to install the
 			<i>unattended-upgrades</i>
 			package (if you are using Ubuntu), enable a firewall and you will be
@@ -56,7 +56,7 @@ templ DeployingAnApplicationUsingDokkuWithHttpsAndRedirects() {
 		</p>
 		<p class="mb-4">
 			Luckily for me (and you), we have&nbsp;
-			@partials.Link("Docker", templ.Attributes{"href": "https://www.docker.com/", "target":"_blank"})
+			@partials.Link("Docker", templ.Attributes{"href": "https://www.docker.com/", "target": "_blank"})
 			&nbsp;these days which makes it much easier to manage all these stuff
 			because each application will have it’s own
 			<i>Dockerfile</i> or
@@ -70,7 +70,7 @@ templ DeployingAnApplicationUsingDokkuWithHttpsAndRedirects() {
 		</p>
 		<p class="mb-4">
 			This is where&nbsp;
-			@partials.Link("Dokku", templ.Attributes{"href": "https://github.com/dokku/dokku", "target":"_blank"})
+			@partials.Link("Dokku", templ.Attributes{"href": "https://github.com/dokku/dokku", "target": "_blank"})
 			&nbsp;gets in the picture. Dokku describes itself as “a Docker powered
 			mini-Heroku”, and it really is as easy to use as Heroku. It will take
 			care of all server related stuff, like managing dependencies, using
@@ -83,14 +83,14 @@ templ DeployingAnApplicationUsingDokkuWithHttpsAndRedirects() {
 		<p class="mb-4">
 			I always use the following commands to get Dokku up and running with
 			an application using the&nbsp;
-			@partials.Link("Buildpacks", templ.Attributes{"href":"https://github.com/dokku/dokku/blob/master/docs/deployment/methods/buildpacks.md", "target":"_blank"})
+			@partials.Link("Buildpacks", templ.Attributes{"href": "https://github.com/dokku/dokku/blob/master/docs/deployment/methods/buildpacks.md", "target": "_blank"})
 			&nbsp;that Dokku supports at the moment.
 		</p>
 		<p class="mb-4">
 			To install Dokku on your server, you should follow the&nbsp;
-			@partials.Link("official documentation", templ.Attributes{"href":"http://dokku.viewdocs.io/dokku/getting-started/installation/", "target":"_blank"})
+			@partials.Link("official documentation", templ.Attributes{"href": "http://dokku.viewdocs.io/dokku/getting-started/installation/", "target": "_blank"})
 			&nbsp;They also have a&nbsp;
-			@partials.Link("great guide", templ.Attributes{"href":"http://dokku.viewdocs.io/dokku/deployment/application-deployment/", "target":"_blank"})
+			@partials.Link("great guide", templ.Attributes{"href": "http://dokku.viewdocs.io/dokku/deployment/application-deployment/", "target": "_blank"})
 			&nbsp;{ "for deploying your first application." }
 		</p>
 		<p class="mb-4">
@@ -102,12 +102,11 @@ templ DeployingAnApplicationUsingDokkuWithHttpsAndRedirects() {
 			<i>www.example.com</i>.
 		</p>
 		<pre class="mb-4">
-			dokku apps:create appname
-			<br/>
-			dokku domains:add appname example.com
-			<br/>
-			dokku domains:add appname www.example.com
-			<br/>
+			<code class="language-shell">
+				{ `dokku apps:create appname
+dokku domains:add appname example.com
+dokku domains:add appname www.example.com` }
+			</code>
 		</pre>
 		<p class="mb-4">
 			You application should now be reachable at
@@ -116,21 +115,20 @@ templ DeployingAnApplicationUsingDokkuWithHttpsAndRedirects() {
 			{ "if you have updated your DNS records correctly. Next thing we need to" }
 			tell Dokku to use SSL. Dokku doesn’t support Let’s Encrypt
 			certificates out of the box, so we need to install a&nbsp;
-			@partials.Link("plugin", templ.Attributes{"href":"https://github.com/dokku/dokku-letsencrypt", "target":"_blank"})
+			@partials.Link("plugin", templ.Attributes{"href": "https://github.com/dokku/dokku-letsencrypt", "target": "_blank"})
 			&nbsp;{ "for it. Execute the following commands on your server." }
 		</p>
 		<pre class="mb-4">
-			# Install the plugin:
-			<br/>
-			sudo dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
-			<br/>
-			# Tell Let's Encrypt which email to use:
-			<br/>
-			dokku config:set --global DOKKU_LETSENCRYPT_EMAIL={ "your-email" }
-			<br/>
-			# Enable Let's Encrypt for our application:
-			<br/>
-			dokku letsencrypt appname
+			<code class="language-shell">
+				{ `# Install the plugin:
+sudo dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
+
+# Tell Let's Encrypt which email to use:
+dokku config:set --global DOKKU_LETSENCRYPT_EMAIL={ "your-email" }
+
+# Enable Let's Encrypt for our application:
+dokku letsencrypt appname` }
+			</code>
 		</pre>
 		<p class="mb-4">
 			Congratulations your application now uses SSL certificates from Let’s
@@ -139,17 +137,17 @@ templ DeployingAnApplicationUsingDokkuWithHttpsAndRedirects() {
 			domain to the <i>www.example.com</i>
 			domain, so we don’t have double content on the internet. We also have
 			to install a&nbsp;
-			@partials.Link("plugin", templ.Attributes{"href":"https://github.com/dokku/dokku-redirect", "target":"_blank"})
+			@partials.Link("plugin", templ.Attributes{"href": "https://github.com/dokku/dokku-redirect", "target": "_blank"})
 			&nbsp;to make it work.
 		</p>
 		<pre class="mb-4">
-			# Install the plugin:
-			<br/>
-			dokku plugin:install https://github.com/dokku/dokku-redirect.git
-			<br/>
-			# Redirect example.com to www.example.com:
-			<br/>
-			dokku redirect:set appname example.com www.example.com
+			<code class="language-shell">
+				{ `# Install the plugin:
+dokku plugin:install https://github.com/dokku/dokku-redirect.git
+
+# Redirect example.com to www.example.com:
+dokku redirect:set appname example.com www.example.com` }
+			</code>
 		</pre>
 		<p class="mb-4">
 			That’s it! You now have a application running on a server using Let’s
@@ -162,7 +160,7 @@ templ DeployingAnApplicationUsingDokkuWithHttpsAndRedirects() {
 			<i>Dockerfile</i>
 			and use it with Dokku. If you want to read more about that already,
 			you can check out the&nbsp;
-			@partials.Link("Dokku documentation", templ.Attributes{"href":"https://dokku.viewdocs.io/dokku/deployment/methods/dockerfiles/", "target":"_blank"})
+			@partials.Link("Dokku documentation", templ.Attributes{"href": "https://dokku.viewdocs.io/dokku/deployment/methods/dockerfiles/", "target": "_blank"})
 		</p>
 	}
 }
