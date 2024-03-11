@@ -70,13 +70,13 @@
                 email, SMS or by pinging a webhook.
             </dd>
 
-            <dt class="mt-3 fw-normal">
-                <x-link href="https://www.kritiek.app" target="_blank">kritiek.app</x-link>
-            </dt>
-            <dd>
-                Enhance user engagement, gain valuable insights, and boost your business success with Kritiek – the
-                ultimate feedback widget application.
-            </dd>
+            <!-- <dt class="mt-3 fw-normal"> -->
+            <!--     <x-link href="https://www.kritiek.app" target="_blank">kritiek.app</x-link> -->
+            <!-- </dt> -->
+            <!-- <dd> -->
+            <!--     Enhance user engagement, gain valuable insights, and boost your business success with Kritiek – the -->
+            <!--     ultimate feedback widget application. -->
+            <!-- </dd> -->
 
             <dt class="mt-3 fw-normal">
                 <x-link href="https://bin.vblinden.dev" target="_blank">bin.vblinden.dev</x-link>
@@ -123,9 +123,7 @@
     <section class="mb-8">
         <h2 class="text-2xl font-bold font-display mb-3">Contact.</h2>
         <p>
-            You can reach me at <span class="lowercase">{{ Str::random(12) }} [at] vblinden.dev</span>.
+            You can reach me at <span class="lowercase">{{ Str::random(6) }} [at] vblinden.dev</span>.
         </p>
     </section>
-
-    <p class="mb-4 font-bold text-xs">This is for my nephew Sam, he is 9 years old! Hello from the internet!</p>
 </x-layout>
