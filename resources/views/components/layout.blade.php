@@ -33,14 +33,10 @@
 
     <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon" />
 
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link rel="stylesheet" href="https://fonts.bunny.net/css?family=inter:400,500,700&display=swap" />
-
     @vite(['resources/css/app.css'])
 </head>
 
 <body class="dark:bg-zinc-900 dark:text-zinc-400 bg-gray-50 text-lg antialiased">
-
     <div class="container mx-auto mb-8">
         <div class="mx-3">
             <div class="my-8">
@@ -59,11 +55,6 @@
             </footer>
         </div>
     </div>
-
-    <script type="module" src="https://www.kritiek.app/widget?v=1"></script>
-    <kritiek-widget survey-id="9a484d81-eeaf-4cce-b644-53f9dc89a8da"></kritiek-widget>
-</body>
-
 </body>
 
 </html>
