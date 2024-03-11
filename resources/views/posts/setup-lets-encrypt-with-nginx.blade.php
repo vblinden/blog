@@ -1,5 +1,5 @@
-<x-layout title="Setup Let's Encrypt with Nginx">
-    <x-header title="Setup Let's Encrypt with Nginx" date="November 19, 2019" reading-time="5"/>
+<x-layout title="Setup Let's Encrypt with Nginx" torchlight>
+    <x-header title="Setup Let's Encrypt with Nginx" date="November 19, 2019" reading-time="5" />
     <p class="mb-4">
         When I migrated my VPS (with Ubuntu) to an other host, I needed to
         setup

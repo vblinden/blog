@@ -1,5 +1,5 @@
-<x-layout title="How to install AMQP on macOS">
-    <x-header title="How to install AMQP on macOS" date="October 2, 2020" reading-time="3"/>
+<x-layout title="How to install AMQP on macOS" torchlight>
+    <x-header title="How to install AMQP on macOS" date="October 2, 2020" reading-time="3" />
 
     <p class="mb-4">
         I recently wanted to install the AMQP extension for PHP version 7.4,

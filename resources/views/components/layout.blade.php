@@ -50,9 +50,11 @@
 
             {{ $slot }}
 
-            <footer class="mt-8 mb-4 text-sm text-slate-500 dark:text-zinc-600">
-                Code highlighting provided by <a href="https://torchlight.dev/" target="_blank">torchlight.dev</a>
-            </footer>
+            @if (isset($torchlight))
+                <footer class="mt-8 mb-4 text-sm text-slate-500 dark:text-zinc-600">
+                    Code highlighting provided by <a href="https://torchlight.dev/" target="_blank">torchlight.dev</a>
+                </footer>
+            @endif
         </div>
     </div>
 </body>

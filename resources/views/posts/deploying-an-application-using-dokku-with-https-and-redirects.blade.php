@@ -1,5 +1,6 @@
-<x-layout title="Deploying an application using Dokku (with HTTPS and redirects)">
-    <x-header title="Deploying an application using Dokku (with HTTPS and redirects)" date="May 5, 2020" reading-time="10"/>
+<x-layout title="Deploying an application using Dokku (with HTTPS and redirects)" torchlight>
+    <x-header title="Deploying an application using Dokku (with HTTPS and redirects)" date="May 5, 2020"
+        reading-time="10" />
 
     <p class="mb-4">
         If you are creating a web application, you have to deploy it at some
@@ -31,7 +32,8 @@
         yourself and that can be a real hassle if you don’t have much
         experience and knowledge about managing a server. Luckily there are a
         lot of tutorials for
-        <x-link href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-20-04" target="_blank">initial server setup</x-link>
+        <x-link href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-20-04"
+            target="_blank">initial server setup</x-link>
         out there which you can follow. Don’t forget to install the
         <i>unattended-upgrades</i>
         package (if you are using Ubuntu), enable a firewall and you will be
@@ -80,15 +82,18 @@
     <p class="mb-4">
         I always use the following commands to get Dokku up and running with
         an application using the
-        <x-link href="https://github.com/dokku/dokku/blob/master/docs/deployment/methods/buildpacks.md" target="_blank">Buildpacks</x-link>
+        <x-link href="https://github.com/dokku/dokku/blob/master/docs/deployment/methods/buildpacks.md"
+            target="_blank">Buildpacks</x-link>
         that Dokku supports at the moment.
     </p>
 
     <p class="mb-4">
         To install Dokku on your server, you should follow the
-        <x-link href="http://dokku.viewdocs.io/dokku/getting-started/installation/" target="_blank" dot>official documentation</x-link>
+        <x-link href="http://dokku.viewdocs.io/dokku/getting-started/installation/" target="_blank" dot>official
+            documentation</x-link>
         They also have a
-        <x-link href="http://dokku.viewdocs.io/dokku/deployment/application-deployment/" target="_blank">great guide</x-link>
+        <x-link href="http://dokku.viewdocs.io/dokku/deployment/application-deployment/" target="_blank">great
+            guide</x-link>
         for deploying your first application.
     </p>
 
@@ -162,6 +167,7 @@
         <i>Dockerfile</i>
         and use it with Dokku. If you want to read more about that already,
         you can check out the
-        <x-link href="https://dokku.viewdocs.io/dokku/deployment/methods/dockerfiles/" target="_blank" dot>Dokku documentation</x-link>
+        <x-link href="https://dokku.viewdocs.io/dokku/deployment/methods/dockerfiles/" target="_blank" dot>Dokku
+            documentation</x-link>
     </p>
 </x-layout>

@@ -1,4 +1,4 @@
-<x-layout title="Retrieve submodules with Git">
+<x-layout title="Retrieve submodules with Git" torchlight>
     <x-header title="Retrieve submodules with Git" date="August 29, 2019" reading-time="1" />
 
     <p class="mb-4">
