@@ -14,11 +14,11 @@
     <section class="mb-8">
         <h2 class="font-bold font-display mb-3 text-2xl">Posts.</h2>
         <ul class="list-inside list-disc ml-6">
-            <!-- <li> -->
-            <!--     <x-link href="/posts/where-are-the-product-people"> -->
-            <!--         Where are the product people? -->
-            <!--     </x-link> -->
-            <!-- </li> -->
+            <li>
+                <x-link href="/posts/where-are-the-product-people">
+                    Where are the product people?
+                </x-link>
+            </li>
             <li>
                 <x-link href="/posts/starship-mission-to-mars">
                     Starship Mission to Mars

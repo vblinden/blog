@@ -4,16 +4,17 @@
     <p class="mb-4">
         In the video below Steve Jobs talks about "product people". As a software engineer I couldn't agree more. In the
         two and half minutes video, Steve Jobs talks about the need of having individuals within a team who are not just
-        technically proficient but also have a deep understanding towards the end user and his/her goal. These "product
+        technically proficient but also have a deep understanding towards the end user and their goal. These "product
         people" understand that software isn't just some lines of code, but rather it's a tool that should integrate
-        into people daily lives, solving a problem they have in a nice and easy way.
+        into peoples daily lives, solving problems they are having a nice and easy way.
     </p>
 
     <p class="mb-4">
-        Take Spotify, for example. Instead of sticking to simplicity for users who just want to enjoy music, they
-        continuously add unnecessary features that clutter the interface. Similarly, WhatsApp introduces features like
-        stickers but grapples with ensuring basic functionality such as reliably delivering messages to users with their
-        native desktop app.
+        Take Spotify, for example; Instead of sticking to simplicity for users who just want to enjoy music, they
+        continuously add unnecessary features that clutter their interface. Similarly, WhatsApp introduces features like
+        stickers but fumbles with ensuring basic functionality such as reliably delivering messages to users with their
+        new native desktop app. I could give you more examples, but you can read lots of them on the Wikipedia page for
+        <x-link href="">enshittification</x-link>.
     </p>
 
     <p class="mb-4">
@@ -21,14 +22,15 @@
         salespeople are gaining more and more decision power on the direction of the product. While they lack the the
         technical expertise, they are making decisions on what features to add, how to design the product, and how to
         market it. This is a problem because these people are more focused on selling the product than on making it
-        great. They are not the "product people" who actually create the product and thus the end user experience
-        is often compromised.
+        great. They are not the "product people" who actually create the product and because of that the end user
+        experience is often compromised.
     </p>
 
     <p class="mb-4">
-        The once great product becomes more about selling than about making something great. The focus is
-        on making the product look good, rather than making it good. This will incrementelly lead to a decrease in the
-        quality of the product and the user experience. Slowly killing the once great product (or company).
+        The once great product becomes more about selling than about making something great for the user. The focus is
+        on making the product look good, rather than making it functionally great. This will incrementelly lead to a
+        decrease in the quality of the product and the user experience. Slowly killing the once great product (or
+        company).
     </p>
 
     <p class="mb-4">
