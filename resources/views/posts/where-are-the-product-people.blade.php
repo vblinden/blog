@@ -6,7 +6,7 @@
         two and half minutes video, Steve Jobs talks about the need of having individuals within a team who are not just
         technically proficient but also have a deep understanding towards the end user and their goal. These "product
         people" understand that software isn't just some lines of code, but rather it's a tool that should integrate
-        into peoples daily lives, solving problems they are having a nice and easy way.
+        into peoples daily lives, solving problems they are having in a nice and easy way.
     </p>
 
     <p class="mb-4">
@@ -14,7 +14,7 @@
         continuously add unnecessary features that clutter their interface. Similarly, WhatsApp introduces features like
         stickers but fumbles with ensuring basic functionality such as reliably delivering messages to users with their
         new native desktop app. I could give you more examples, but you can read lots of them on the Wikipedia page for
-        <x-link href="">enshittification</x-link>.
+        <x-link href="https://en.m.wikipedia.org/wiki/Enshittification" target="_blank">enshittification</x-link>.
     </p>
 
     <p class="mb-4">
