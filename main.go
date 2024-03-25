@@ -4,74 +4,75 @@ import (
 	"blog/templates"
 	"blog/templates/errors"
 	"blog/templates/posts"
-	"log"
+	"fmt"
+	"net/http"
 
 	"github.com/a-h/templ"
-	"github.com/gofiber/fiber/v3"
-	"github.com/gofiber/fiber/v3/middleware/adaptor"
-	"github.com/gofiber/fiber/v3/middleware/favicon"
-	"github.com/gofiber/fiber/v3/middleware/logger"
-	"github.com/gofiber/fiber/v3/middleware/recover"
-	"github.com/gofiber/fiber/v3/middleware/requestid"
-	gonanoid "github.com/matoous/go-nanoid/v2"
+	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/chi/v5/middleware"
+	gonanoid "github.com/matoous/go-nanoid"
 )
 
 func main() {
-	app := fiber.New(fiber.Config{
-		// DisableStartupMessage: true,
-	})
+	r := chi.NewRouter()
+	r.Use(middleware.RequestID)
+	r.Use(middleware.RealIP)
+	r.Use(middleware.Logger)
+	r.Use(middleware.Recoverer)
+	r.Use(middleware.RedirectSlashes)
 
-	app.Use(recover.New())
-	app.Use(favicon.New())
-	app.Use(logger.New())
-	app.Use(requestid.New())
+	fs := http.FileServer(http.Dir("static"))
+	r.Handle("/static/*", http.StripPrefix("/static/", fs))
 
-	app.Static("/static", "./static")
-
-	app.Get("/", func(c fiber.Ctx) error {
+	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		id, _ := gonanoid.Generate("vblinden", 6)
 
-		return Render(c, templates.Index(id))
+		templ.Handler(templates.Index(id)).ServeHTTP(w, r)
 	})
 
-	app.Get("/posts/:name", func(c fiber.Ctx) error {
-		postName := c.Params("name")
+	r.Get("/posts/{name}", func(w http.ResponseWriter, r *http.Request) {
+		postName := chi.URLParam(r, "name")
 
 		switch postName {
 		case "never-forget-backups":
-			return Render(c, posts.NeverForgetBackups())
+			templ.Handler(posts.NeverForgetBackups()).ServeHTTP(w, r)
+			return
 		case "retrieve-submodules-with-git":
-			return Render(c, posts.RetrieveSubmodulesWithGit())
+			templ.Handler(posts.RetrieveSubmodulesWithGit()).ServeHTTP(w, r)
+			return
 		case "setup-lets-encrypt-with-nginx":
-			return Render(c, posts.SetupLetsEncryptWithNginx())
+			templ.Handler(posts.SetupLetsEncryptWithNginx()).ServeHTTP(w, r)
+			return
 		case "deploying-an-application-using-dokku-with-https-and-redirects":
-			return Render(c, posts.DeployingAnApplicationUsingDokkuWithHttpsAndRedirects())
+			templ.Handler(posts.DeployingAnApplicationUsingDokkuWithHttpsAndRedirects()).ServeHTTP(w, r)
+			return
 		case "what-did-you-undesign":
-			return Render(c, posts.WhatDidYouUndesign())
+			templ.Handler(posts.WhatDidYouUndesign()).ServeHTTP(w, r)
+			return
 		case "how-to-install-amqp-on-macos":
-			return Render(c, posts.HowToInstallAmqpOnMacOs())
+			templ.Handler(posts.HowToInstallAmqpOnMacOs()).ServeHTTP(w, r)
+			return
 		case "implement-rigorously-the-five-step-process":
-			return Render(c, posts.ImplementRigorouslyTheFiveStepProcess())
+			templ.Handler(posts.ImplementRigorouslyTheFiveStepProcess()).ServeHTTP(w, r)
+			return
 		case "starship-mission-to-mars":
-			return Render(c, posts.StarshipMissionToMars())
+			templ.Handler(posts.StarshipMissionToMars()).ServeHTTP(w, r)
+			return
+		case "where-are-the-product-people":
+			templ.Handler(posts.WhereAreTheProductPeople()).ServeHTTP(w, r)
+			return
 		default:
-			return Render(c, errors.NotFound())
+			w.WriteHeader(http.StatusNotFound)
+			templ.Handler(errors.NotFound()).ServeHTTP(w, r)
+			return
 		}
 	})
 
-	app.Use(func(c fiber.Ctx) error {
-		return Render(c, errors.NotFound())
+	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusNotFound)
+		templ.Handler(errors.NotFound()).ServeHTTP(w, r)
 	})
 
-	log.Fatal(app.Listen(":3000"))
-}
-
-func Render(c fiber.Ctx, component templ.Component, options ...func(*templ.ComponentHandler)) error {
-	componentHandler := templ.Handler(component)
-
-	for _, o := range options {
-		o(componentHandler)
-	}
-
-	return adaptor.HTTPHandler(componentHandler)(c)
+	fmt.Println("starting server on :3000")
+	http.ListenAndServe(":3000", r)
 }
