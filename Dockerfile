@@ -7,7 +7,7 @@ COPY . .
 RUN npm ci
 RUN npm run build
 
-FROM golang:1.21-alpine as builder
+FROM golang:1.22-alpine as builder
 
 RUN go install github.com/a-h/templ/cmd/templ@latest
 
