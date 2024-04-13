@@ -5,7 +5,7 @@ go 1.22.0
 toolchain go1.22.1
 
 require (
-	github.com/a-h/templ v0.2.648
+	github.com/a-h/templ v0.2.663
 	github.com/asdgo/asdgo v0.5.1
 	github.com/labstack/echo/v4 v4.11.4
 	github.com/matoous/go-nanoid v1.5.0
