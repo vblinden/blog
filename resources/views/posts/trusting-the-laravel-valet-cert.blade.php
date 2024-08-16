@@ -3,9 +3,9 @@
 
     <p class="mb-4">
         Sometimes/somehow Chrome or Firefox (or any other browser) will not trust the Laravel Valet certificate. This
-        can be fixed by adding the certificate to the list of trusted certificates in your locally OpenSSL
-        <strong>cacert.pem</strong>. Btw, these instructions are for macOS, but I think it should be similar for other
-        operating systems.
+        can be fixed by adding the certificate to the list of trusted certificates in your locally Homebrew
+        <strong>cacert.pem</strong> file (which is then being used by OpenSSL). Btw, these instructions are for macOS,
+        but I think it should be similar for other operating systems.
     </p>
 
     <p class="mb-4">
