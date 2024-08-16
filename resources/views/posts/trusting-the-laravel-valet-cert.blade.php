@@ -2,7 +2,7 @@
     <x-header title="Trusting the Laravel Valet cert" date="Augustus 16, 2024" reading-time="1" />
 
     <p class="mb-4">
-        Sometimes/somehow Chrome or Firefox (or any other browser) will not trust the Laravel Valet certificate. This
+        Sometimes your PHP processes will not trust the Laravel Valet certificate when communicating between sites. This
         can be fixed by adding the certificate to the list of trusted certificates in your locally Homebrew
         <strong>cacert.pem</strong> file (which is then being used by OpenSSL). Btw, these instructions are for macOS,
         but I think it should be similar for other operating systems.
