@@ -1,0 +1,22 @@
+export default function Header({
+  title,
+  date,
+  readingTime,
+}: Readonly<{
+  title: string;
+  date: string;
+  readingTime?: string;
+}>) {
+  return (
+    <header className="flex flex-col mb-6">
+      <h1 className="mt-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">{title}</h1>
+      <time className="order-first flex items-center text-base text-zinc-400 dark:text-zinc-500">
+        <strong>Posted on&nbsp;</strong> {date}
+      </time>
+
+      <p className="order-first flex items-center text-base text-zinc-400 dark:text-zinc-500">
+        <strong>Reading time&nbsp;</strong> is {readingTime} minute(s)
+      </p>
+    </header>
+  );
+}

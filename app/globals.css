@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.shiki {
+    padding: .55555rem;
+    overflow: scroll;
+    border-radius: 4px;
+    counter-reset: step;
+    counter-increment: step 0;
+
+    .line {
+        &::before {
+            counter-increment: step;
+            @apply mr-6 inline-block w-4 border-transparent text-right text-neutral-600 content-[counter(step)];
+        }
+    }
+}
+
+i.code {
+    @apply inline-flex justify-center align-top font-bold not-italic ml-1.5 mr-1.5 p-1 text-sm rounded-sm dark:bg-neutral-800 dark:text-neutral-200;
+}
