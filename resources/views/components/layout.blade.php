@@ -23,6 +23,9 @@
     <meta name="twitter:creator" content="@vblinden" />
     <meta name="twitter:image" content="https://www.vblinden.dev/images/social.png" />
 
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=roboto:400,700" rel="stylesheet" />
+
     <title>
         @if (isset($title))
             {{ $title }} &mdash; {{ config('app.name') }}
