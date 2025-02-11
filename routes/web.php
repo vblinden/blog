@@ -13,3 +13,4 @@ Route::view('/posts/deploying-an-application-using-dokku-with-https-and-redirect
 Route::view('/posts/starship-mission-to-mars', 'posts/starship-mission-to-mars');
 Route::view('/posts/where-are-the-product-people', 'posts/where-are-the-product-people');
 Route::view('/posts/trusting-the-laravel-valet-cert', 'posts/trusting-the-laravel-valet-cert');
+Route::view('/posts/fixing-net-err-content-decoding-failed-error', 'posts/fixing-net-err-content-decoding-failed-error');

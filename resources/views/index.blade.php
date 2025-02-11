@@ -1,19 +1,24 @@
 <x-layout>
     <div class="my-8">
-        <p class="text-justify">
-            Hey friends, my name is Vincent van der Linden and you can find me online as
-            <x-link dot href="https://github.com/vblinden" target="_blank">@vblinden</x-link>
-            I am currently working at
-            <x-link href="https://team.blue" target="_blank">team.blue</x-link>
-            as a software engineer. On this website you can find some things that I thought were important or useful
-            enough to put online. Please enjoy. The opinions expressed herein are my own personal opinions and do
-            not represent my employer’s view in any way.
+        p class="text-justify">
+        Hey friends, my name is Vincent van der Linden and you can find me online as
+        <x-link dot href="https://github.com/vblinden" target="_blank">@vblinden</x-link>
+        I am currently working at
+        <x-link href="https://team.blue" target="_blank">team.blue</x-link>
+        as a software engineer. On this website you can find some things that I thought were important or useful
+        enough to put online. Please enjoy. The opinions expressed herein are my own personal opinions and do
+        not represent my employer’s view in any way.
         </p>
     </div>
 
     <section class="mb-8">
         <h2 class="font-bold font-display mb-3 text-2xl">Posts.</h2>
         <ul class="list-inside list-disc ml-6">
+            <li>
+                <x-link href="/posts/fixing-net-err-content-decoding-failed-error">
+                    Fixing the "net::ERR_CONTENT_DECODING_FAILED" error
+                </x-link>
+            </li>
             <li>
                 <x-link href="/posts/trusting-the-laravel-valet-cert">
                     Trusting the Laravel Valet cert
