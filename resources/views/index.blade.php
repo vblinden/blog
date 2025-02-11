@@ -15,6 +15,11 @@
         <h2 class="font-bold font-display mb-3 text-2xl">Posts.</h2>
         <ul class="list-inside list-disc ml-6">
             <li>
+                <x-link href="/posts/fixing-timeout-when-firing-lots-of-requests-with-laravel-valet">
+                    Fixing timeout when firing lots of requests with Laravel Valet
+                </x-link>
+            </li>
+            <li>
                 <x-link href="/posts/fixing-net-err-content-decoding-failed-error">
                     Fixing the "net::ERR_CONTENT_DECODING_FAILED" error
                 </x-link>
