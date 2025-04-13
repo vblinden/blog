@@ -1,0 +1,13 @@
+image:
+  repository: registry.vblinden.dev/personal/blog
+  pullPolicy: Always
+
+imagePullSecrets:
+  - name: private-registry-key
+
+ingress:
+  enabled: true
+  url: www.vblinden.dev
+
+redis:
+  enabled: false
