@@ -8,6 +8,8 @@ RUN npm ci && \
 
 FROM dunglas/frankenphp:latest
 
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
 RUN install-php-extensions \
 	pdo_pgsql \
 	intl \
@@ -21,3 +23,11 @@ COPY . /app
 COPY --from=frontend /app/public /app/public
 
 RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+
+CMD ["frankenphp", "run", "--config", "/etc/caddy/Caddyfile"]
+

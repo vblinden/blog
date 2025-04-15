@@ -1,0 +1,48 @@
+name: Build, push, and deploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Registry
+        uses: docker/login-action@v3
+        with:
+          registry: registry.vblinden.dev
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+            registry.vblinden.dev/personal/blog:${{ github.sha }}
+            registry.vblinden.dev/personal/blog:latest
+
+      - name: Set up Kubeconfig
+        uses: azure/k8s-set-context@v4
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBECONFIG }}
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v4
+
+      - name: Deploy to Kubernetes with Helm
+        run: |
+          helm pull oci://registry.vblinden.dev/charts/laravel --version 1.2.0
+          helm upgrade --install blog ./laravel-1.2.0.tgz \
+            --namespace blog \
+            --set image.tag=${{ github.sha }} \
+            -f helm.yml
