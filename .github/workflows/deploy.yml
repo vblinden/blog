@@ -41,8 +41,8 @@ jobs:
 
       - name: Deploy to Kubernetes with Helm
         run: |
-          helm pull oci://registry.vblinden.dev/charts/laravel --version 1.2.0
-          helm upgrade --install blog ./laravel-1.2.0.tgz \
+          helm pull oci://registry.vblinden.dev/charts/laravel --version 2.0.0
+          helm upgrade --install blog ./laravel-2.0.0.tgz \
             --namespace blog \
             --set image.tag=${{ github.sha }} \
             -f helm.yml
