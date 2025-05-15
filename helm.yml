@@ -1,0 +1,17 @@
+image:
+  repository: registry.vblinden.dev/personal/blog
+  pullPolicy: Always
+
+imagePullSecrets:
+  - name: private-registry-key
+
+ingress:
+  enabled: true
+  urls:
+    - www.vblinden.dev
+    - vblinden.dev
+  annotations:
+    nginx.ingress.kubernetes.io/server-snippet: |
+      if ($host = "vblinden.dev") {
+        return 301 https://www.vblinden.dev$request_uri;
+      }
