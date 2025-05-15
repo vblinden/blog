@@ -9,7 +9,6 @@
     <meta property="og:title" content="vblinden." />
     <meta property="og:description"
         content="Hey friends, my name is Vincent van der Linden and you can find me online as @vblinden. I am currently working at team.blue as a software engineer. On this website you can find some things that I thought were important or useful enough to put online. Please enjoy.">
-    <meta property="og:image" content="https://www.vblinden.dev/images/social.png" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.vblinden.dev" />
     <meta property="og:locale" content="en_US" />
@@ -21,7 +20,6 @@
     <meta name="twitter:title" content="vblinden">
     <meta name="twitter:site" content="@vblinden" />
     <meta name="twitter:creator" content="@vblinden" />
-    <meta name="twitter:image" content="https://www.vblinden.dev/images/social.png" />
 
     <title>
         @if (isset($title))
