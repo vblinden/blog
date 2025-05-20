@@ -94,13 +94,14 @@
                 email, SMS or by pinging a webhook.
             </dd>
 
-            <!-- <dt class="mt-3 fw-normal"> -->
-            <!--     <x-link href="https://www.kritiek.app" target="_blank">kritiek.app</x-link> -->
-            <!-- </dt> -->
-            <!-- <dd> -->
-            <!--     Enhance user engagement, gain valuable insights, and boost your business success with Kritiek – the -->
-            <!--     ultimate feedback widget application. -->
-            <!-- </dd> -->
+            <dt class="mt-3 fw-normal">
+                <x-link href="https://feedbackwidget.dev" target="_blank">feedbackwidget.dev</x-link>
+            </dt>
+            <dd>
+                Gain unparalleled insights and fuel your growth with our intuitive feedback widget! Easily gather user
+                feedback directly from your website using our simple, customizable forms. No coding required. For
+                ultimate flexibility, our API access lets you tailor feedback collection to your unique workflows.
+            </dd>
 
             <!-- <dt class="mt-3 fw-normal"> -->
             <!--     <x-link href="https://bin.vblinden.dev" target="_blank">bin.vblinden.dev</x-link> -->
