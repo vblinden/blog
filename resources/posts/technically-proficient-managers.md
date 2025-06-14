@@ -3,17 +3,29 @@ title: Technically proficient managers
 date: June 3, 2025
 ---
 
-Imagine a chef who can't cook, a pilot who can't fly, or a surgeon who can't operate. Sounds like a joke, doesn't it? Yet, here we are in 2025, with software engineering teams (and countless other professions) being led by managers who can't code, can't design, can't do the job they are supposed to oversee. It is like putting a tone-deaf conductor in front of an orchestra or a couch potato as a football coach. This isn't just inefficient, it's pure insanity! And it's happening everywhere, all of the time. It is like the world has lost its mind.
+You've probably worked with one. The engineering manager who gets it. The one you don't have to educate on how long something takes, or what refactoring really means, or why that tiny visual bug is actually hiding a gnarly architectural issue.
 
-Technical expertise isn't optional. It is the foundation of competent leadership in software engineering. A manager who can code doesn't just nod along. They make sharp decisions, set realistic timelines, and sniff out inefficiencies before they happen. They can jump into a technical debate, suggest fixes, and give feedback that is worth something. Without that? They are clueless, guessing at schedules and swallowing whatever their team feeds them. It's like steering a ship blindfolded in a storm. Good luck not sinking.
+These managers can smell tech debt like a bloodhound. They know that a simple one-line fix might actually require rethinking a core abstraction. They ask the right questions without overstepping. They care about the quality of the work, not just the output.
 
-Take for example a critical bug ruining a product launch. A manager who codes can roll up their sleeves, spot the problem, and propose a solution. Saving time and proving they've got skin in the game. Or in code reviews, they can call out sloppy patterns or choose to optimize for performance. Making the team better one small step at a time. That's how you earn respect. When a manager can, so to say, "ride the horse", instead of just yapping orders from the sidelines, the team trusts them. Anything less is a joke.
+When you're dealing with a technically proficient manager, you're often more productive. Not because they micromanage, but because they understand the terrain. There's no friction in explaining why something matters. They advocate for good engineering practices because they've seen what happens when you don't. They know that rushed work comes back to bite you.
 
-People say, "Oh, managers just need soft skills, motivate their workers, communication is key, etc, etc.". Those indeed matter, but in software engineering, they're useless without technical knowledge. A manager who doesn't get the tech cannot judge delays,  can't spot technical debt piling up, and ends up steering the ship straight into an iceberg. They look like fools to their team, who see right through them. Technical competence doesn't compete with people skills, they amplify them. Forging a leader who is not just a cheerleader but a player coach.
+But being technically proficient doesn't mean they're always hands-on. In fact, the best ones know when to step back. They resist the urge to jump into the codebase unless it truly makes sense. Their technical background informs their leadership, but doesn't dominate it.
 
-It is utterly deranged that we're still letting managers who can't do the job run the show. It's like hiring a vegan to grill steaks or a pacifist to command troops. It is not just software engineering, it is everywhere. Construction, medicine, manufacturing. Name an industry, and you will find this lunacy. In software, a manager who can't write a line of code is a liability. The ones who can? They lead with authority, make smarter calls, and command respect. Accepting less is a disaster waiting to happen.
+And they tend to earn the respect of their teams more quickly. Not just because of their résumé, but because they can participate in technical discussions meaningfully, and they don't waste your time. You trust their judgment.
 
-Technical proficiency in software engineering managers isn't a nice to have, it is a must. This madness of non technical leaders fumbling through technical roles has to stop, it is doomed to fail. Managers need to code with their teams and keep up with the game. The best don't just point fingers from the back, they lead from the front, they have their hands on the steering wheel.
+The opposite? Managers who treat engineering like a black box. Who measure productivity in story points or number of PRs. Who demand deadlines without context. It's exhausting.
+
+Working under one of these managers can feel like being a pilot taking orders from someone who's only read the in-flight safety card. Or a mechanic being managed by someone who thinks oil changes are optional. These folks are out of their depth, but they don't know it, or worse, they pretend they do.
+
+They often obsess over metrics without understanding the nuance behind them. Velocity becomes gospel. Burndown charts are weaponized. Every delay is treated as a failure of effort, not a symptom of complexity. They think software is like a factory assembly line, where input equals predictable output, rather than an iterative, creative process full of trade-offs.
+
+And so you spend more energy explaining than building. You start padding estimates just to buy breathing room. You avoid raising technical concerns because you know they won't be understood, or worse, they'll be dismissed.
+
+In the long run, these managers erode trust, stifle innovation, and create teams that learn to do the minimum necessary. They aren't leading, they're managing checklists.
+
+I strongly believe that all managers in a technical area must be technically excellent. You don't need to be the top contributor on the repo, but you need to write great software and have the experience to back up your decisions. Otherwise, it's like being a cavalry captain who can't ride a horse, you might wear the uniform, but no one's going to follow you into battle.
+
+You don't need a manager to be the best coder on the team. But if they have the technical experience to understand what good work looks like, and the humility to let their team shine, you're in good hands.
 
 Here is Steve Jobs saying something like this 40 years (!!) ago: <x-link target="_blank" href="https://www.youtube.com/watch?v=QplyFXgIx7Q">youtube.com/watch?v=QplyFXgIx7Q</x-link>.
 
