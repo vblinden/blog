@@ -13,15 +13,15 @@ But being technically proficient doesn't mean they're always hands-on. In fact, 
 
 And they tend to earn the respect of their teams more quickly. Not just because of their previous experience, but because they can participate in technical discussions meaningfully, and they don't waste your time. You trust their judgment.
 
-The opposite? Managers who treat engineering like a black box. Who measure productivity in story points or number of PRs. Who demand deadlines without context. It's exhausting.
+On the flip side, managers without technical depth face real challenges. They might rely heavily on metrics like story points or PR counts, which can miss the bigger picture. Context becomes harder to provide when technical nuance isn't part of their toolkit.
 
-Working under one of these managers can feel like being a pilot taking orders from someone who's only read the in-flight safety card. Or a mechanic being managed by someone who thinks oil changes are optional. These folks are out of their depth, but they don't know it, or even worse, they pretend they do.
+The gap shows up in different ways. Communication requires more translation. Technical decisions take longer to explain and approve. There's often a mismatch between what seems simple on the surface and what's actually complex underneath.
 
-They often obsess over metrics without understanding the nuance behind them. Velocity becomes gospel. Burndown charts are weaponized. Every delay is treated as a failure of effort, not a symptom of complexity. They think software is like a factory assembly line, where input equals predictable output, rather than an iterative, creative process full of trade-offs.
+These managers might focus on velocity and burndown charts as their primary tools for understanding progress. While metrics matter, they tell an incomplete story. Software development is more like creative problem-solving than manufacturing – it's iterative, full of unknowns, and requires constant trade-offs.
 
-And so you spend more energy explaining than building. You start padding estimates just to buy breathing room. You avoid raising technical concerns because you know they won't be understood, or worse, they'll be dismissed.
+When the technical context is missing, teams often find themselves over-explaining rather than building. Estimates get padded for safety. Important technical concerns might get lost in translation or simplified away.
 
-In the long run, these managers erode trust, stifle innovation, and create teams that learn to do the minimum necessary and cut corners. They aren't leading, they're managing checklists.
+The result is often well-intentioned but misaligned priorities. Teams learn to work around the gaps rather than through them. Innovation slows down when every technical decision requires extensive justification.
 
 I have a strong believe that all managers in a technical area must be technically excellent. You don't need to be the top contributor on the repo, but you need to write/wrote great software and have the experience to back up your decisions. Otherwise, it's like being a cavalry captain who can't ride a horse, you might wear the uniform, but no one's going to follow you into battle.
 
