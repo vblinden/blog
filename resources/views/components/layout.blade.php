@@ -54,6 +54,10 @@
             {{ $slot }}
         </div>
     </div>
+
+    @if (config('app.env') === 'production')
+        <script defer src="https://assets.onedollarstats.com/stonks.js"></script>
+    @endif
 </body>
 
 </html>
