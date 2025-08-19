@@ -90,6 +90,14 @@
         <h2 class="font-bold font-display mb-3 text-2xl">Projects.</h2>
         <dl>
             <dt class="fw-normal">
+                <x-link href="https://sendwich.dev" target="_blank">sendwich.dev</x-link>
+            </dt>
+            <dd class="text-justify">
+                It's a lean, developer-first transactional email service that delivers the 
+                essentials without the bloat, gimmicks, or hidden pricing tricks.
+            </dd>
+
+            <dt class="mt-3 fw-normal">
                 <x-link href="https://www.checkeroni.com" target="_blank">checkeroni.com</x-link>
             </dt>
             <dd class="text-justify">
