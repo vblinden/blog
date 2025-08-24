@@ -108,6 +108,14 @@
             </dd>
 
             <dt class="mt-3 fw-normal">
+                <x-link href="https://whatswrong.dev" target="_blank">whatswrong.dev</x-link>
+            </dt>
+            <dd class="text-justify">
+                Great tool to help you find out what's wrong with your website. Application 
+                exception tracking service for Laravel. A sort of Sentry light.
+            </dd>
+
+            <dt class="mt-3 fw-normal">
                 <x-link href="https://feedbackwidget.dev" target="_blank">feedbackwidget.dev</x-link>
             </dt>
             <dd>
