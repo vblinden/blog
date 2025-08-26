@@ -116,6 +116,14 @@
             </dd>
 
             <dt class="mt-3 fw-normal">
+                <x-link href="https://staravatars.com" target="_blank">staravatars.com</x-link>
+            </dt>
+            <dd class="text-justify">
+                Create beautiful space and star based avatars based on the text provided. I use this for 
+                my own projects to get rid of the boring default avatars.
+            </dd>
+
+            <dt class="mt-3 fw-normal">
                 <x-link href="https://feedbackwidget.dev" target="_blank">feedbackwidget.dev</x-link>
             </dt>
             <dd>
