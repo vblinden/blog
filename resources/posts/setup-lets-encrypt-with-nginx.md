@@ -3,7 +3,7 @@ title: Setup Let's Encrypt with Nginx
 date: November 19, 2019 
 ---
 
-When I migrated my VPS (with Ubuntu) to an other host, I needed to setup <x-link href="https://nginx.org/" target="_blank">Nginx</x-link> again with <x-link href="https://letsencrypt.org/" target="_blank">Let's Encrypt</x-link> but I always forget how to exactly do it. This blog post is aimed to describe in easy steps how to setup up Nginx with auto-renewing Let’s Encrypt SSL certificates.
+When I migrated my VPS (with Ubuntu) to an other host, I needed to setup <x-link href="https://nginx.org/" target="_blank">Nginx</x-link> again with <x-link href="https://letsencrypt.org/" target="_blank">Let's Encrypt</x-link> but I always forget how to exactly do it. This blog post is aimed to describe in easy steps how to setup up Nginx with auto-renewing Let's Encrypt SSL certificates.
 
 ## Setting up Nginx
 
@@ -34,9 +34,9 @@ sudo apt-get update
 sudo apt-get install certbot python-certbot-nginx
 ```
 
-## Getting a SSL certificate from Let’s Encrypt
+## Getting a SSL certificate from Let's Encrypt
 
-Now that we installed Certbot we can get a certificate from Let’s Encrypt by running the following command.
+Now that we installed Certbot we can get a certificate from Let's Encrypt by running the following command.
 
 ```
 sudo certbot --nginx -d example.com -d www.example.com

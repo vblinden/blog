@@ -6,7 +6,7 @@ date: September 25, 2021
 I have always admired Elon Musk and his philosophy of continuously improving products by recursively iterating. In one of the videos made by Everyday Astronaut (see video at end of post) he gives a tour of the SpaceX facilities and in some parts of the video he elaborates the method he is using at SpaceX to build a new iteration of Starship every couple of weeks. He calls this "Implement Rigorously". I have taken the liberty to write down these five steps (paraphrasing his words).
 
 ## Step 1: Make your requirements less dumb
-Your requirements are definitely dumb. It does not matter who gave them to you. It is particularly dangerous if a smart person gave you the requirements, because you might not question them enough. Everyone is wrong. No matter who you are, everyone is wrong some of the time. All designs are wrong, it’s just a matter of how wrong.
+Your requirements are definitely dumb. It does not matter who gave them to you. It is particularly dangerous if a smart person gave you the requirements, because you might not question them enough. Everyone is wrong. No matter who you are, everyone is wrong some of the time. All designs are wrong, it's just a matter of how wrong.
 
 Each requirement needs to come with a name, not a department. Because you can't ask the departments, you have to ask a person. The person also must take responsibility for that requirement. Otherwise you could have a requirement that an intern randomly came up with two years ago and they are not even at the company anymore.
 

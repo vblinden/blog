@@ -21,7 +21,7 @@ Warning: mkdir(): File exists in System.php on line 294 PHP Warning: mkdir(): Fi
 /usr/local/Cellar/php/7.4.10/pecl/20190812
 ```
 
-The command fails because pecl can’t create the directories itself.
+The command fails because pecl can't create the directories itself.
 
 This can be easily fixed by executing the following commands:
 
