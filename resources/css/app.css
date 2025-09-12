@@ -31,6 +31,6 @@ html {
 }
 
 .markdown ul {
-    @apply list-disc list-inside mb-4;
+    @apply list-disc list-inside mb-4 ml-6;
 }
 
