@@ -1,6 +1,6 @@
 ---
 title: Never. Forget. Backups.
-date: Augustus 26, 2019
+date: August 26, 2019
 ---
 
 Unfortunately DigitalOcean had a node failure yesterday in their AMS3

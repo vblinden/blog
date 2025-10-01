@@ -23,7 +23,7 @@ When the technical context is missing, teams often find themselves over-explaini
 
 The result is often well-intentioned but misaligned priorities. Teams learn to work around the gaps rather than through them. Innovation slows down when every technical decision requires extensive justification.
 
-I have a strong believe that all managers in a technical area must be technically excellent. You don't need to be the top contributor on the repo, but you need to write/wrote great software and have the experience to back up your decisions. Otherwise, it's like being a cavalry captain who can't ride a horse, you might wear the uniform, but no one's going to follow you into battle.
+I have a strong belief that all managers in a technical area must be technically excellent. You don't need to be the top contributor on the repo, but you need to write/wrote great software and have the experience to back up your decisions. Otherwise, it's like being a cavalry captain who can't ride a horse, you might wear the uniform, but no one's going to follow you into battle.
 
 You don't need a manager to be the best coder on the team. But if they have the technical experience to understand what good work looks like, and the humility to let their team shine, you're in good hands.
 

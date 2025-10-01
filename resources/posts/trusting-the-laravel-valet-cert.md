@@ -1,6 +1,6 @@
 ---
 title: Trusting the Laravel Valet cert
-date: Augustus 16, 2024
+date: August 16, 2024
 ---
 
 Sometimes your PHP processes will not trust the Laravel Valet certificate when communicating between sites. This

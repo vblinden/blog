@@ -7,7 +7,7 @@ If you are creating a web application, you have to deploy it at some point. Most
 
 These services are great and work really well, however they can really add up in cost when you want to scale up an application or have multiple little applications running.
 
-This is why I recently purchased a Virtual Private Server (VPS), they are a lot cheaper (cheap as in $2.50 a month!) then the providers mentioned above. This is of course if you are not taking in account that these providers also offer a free tier for some of their services (mostly you can have one single application at most though).
+This is why I recently purchased a Virtual Private Server (VPS), they are a lot cheaper (cheap as in $2.50 a month!) than the providers mentioned above. This is of course if you are not taking in account that these providers also offer a free tier for some of their services (mostly you can have one single application at most though).
 
 The only downside to this is that you have to manage the server yourself and that can be a real hassle if you don't have much experience and knowledge about managing a server. Luckily there are a lot of tutorials for <x-link href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-20-04" target="_blank">initial server setup</x-link> out there which you can follow. Don't forget to install the <i>unattended-upgrades</i> package (if you are using Ubuntu), enable a firewall and you will be fine (I am <strong>not</strong> an expert on server management or security, so please don't quote me on this).
 
@@ -52,6 +52,6 @@ dokku plugin:install https://github.com/dokku/dokku-redirect.git
 dokku redirect:set appname example.com www.example.com
 ```
 
-That's it! You now have a application running on a server using Let's Encrypt SSL certificates and redirecting the root domain <i>www.example.com</i> to the subdomain <i>www.example.com</i>.
+That's it! You now have an application running on a server using Let's Encrypt SSL certificates and redirecting the root domain <i>example.com</i> to the subdomain <i>www.example.com</i>.
 
 In a next blog post I will show you how to use a custom <i>Dockerfile</i> and use it with Dokku. If you want to read more about that already, you can check out the <x-link href="https://dokku.viewdocs.io/dokku/deployment/methods/dockerfiles/" target="_blank" dot>Dokku documentation</x-link>
