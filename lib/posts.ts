@@ -25,25 +25,6 @@ export function getAllPostSlugs(): string[] {
     .map((name) => name.replace(/\.md$/, ""));
 }
 
-export function getAllPosts(): PostMeta[] {
-  const slugs = getAllPostSlugs();
-  const posts = slugs
-    .map((slug) => {
-      const fullPath = path.join(postsDirectory, `${slug}.md`);
-      const fileContents = fs.readFileSync(fullPath, "utf8");
-      const { data } = matter(fileContents);
-
-      return {
-        slug,
-        title: data.title || slug.replace(/-/g, " "),
-        date: data.date || "",
-      };
-    })
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-
-  return posts;
-}
-
 export function getPostData(slug: string): PostData | null {
   try {
     const fullPath = path.join(postsDirectory, `${slug}.md`);
