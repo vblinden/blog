@@ -2,7 +2,7 @@ import Link from "@/components/link";
 
 export default function Home() {
   return (
-    <>
+    <main>
       <div className="my-8">
         <p className="text-justify">
           Hey friends, my name is Vincent van der Linden and you can find me
@@ -245,6 +245,6 @@ export default function Home() {
           <span className="lowercase">blog [at] vblinden.dev</span>.
         </p>
       </section>
-    </>
+    </main>
   );
 }
