@@ -1,8 +1,6 @@
 import Link from "@/components/link";
 import { getAllPosts } from "@/lib/posts";
 
-export const revalidate = 604800;
-
 export default function Home() {
   const posts = getAllPosts();
 
