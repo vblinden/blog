@@ -54,7 +54,7 @@ export default function Home() {
 
           <li>
             <Link
-              href={`/posts/fixing-the-net-err-content-decoding-failed-error`}
+              href={`/posts/fixing-net-err-content-decoding-failed-error`}
               target="_self"
             >
               Fixing the &quot;net::ERR_CONTENT_DECODING_FAILED&quot; error
