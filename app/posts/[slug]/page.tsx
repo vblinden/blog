@@ -9,6 +9,7 @@ interface PostPageProps {
 
 export async function generateStaticParams() {
   const slugs = getAllPostSlugs();
+
   return slugs.map((slug) => ({
     slug,
   }));
