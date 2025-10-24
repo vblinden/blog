@@ -29,6 +29,7 @@ export default function Home() {
             <Link
               href={`/posts/tinkerers-make-better-engineers`}
               target="_self"
+              prefetch={false}
             >
               Tinkerers make better engineers
             </Link>
@@ -38,6 +39,7 @@ export default function Home() {
             <Link
               href={`/posts/technically-proficient-managers`}
               target="_self"
+              prefetch={false}
             >
               Technically proficient managers
             </Link>
@@ -47,6 +49,7 @@ export default function Home() {
             <Link
               href={`/posts/do-not-write-your-own-css-framework`}
               target="_self"
+              prefetch={false}
             >
               Do not write your own CSS framework
             </Link>
@@ -56,6 +59,7 @@ export default function Home() {
             <Link
               href={`/posts/fixing-the-net-err-content-decoding-failed-error`}
               target="_self"
+              prefetch={false}
             >
               Fixing the &quot;net::ERR_CONTENT_DECODING_FAILED&quot; error
             </Link>
@@ -65,6 +69,7 @@ export default function Home() {
             <Link
               href={`/posts/fixing-timeout-when-firing-lots-of-requests-with-laravel-valet`}
               target="_self"
+              prefetch={false}
             >
               Fixing timeout when firing lots of requests with Laravel Valet
             </Link>
@@ -74,19 +79,28 @@ export default function Home() {
             <Link
               href={`/posts/trusting-the-laravel-valet-cert`}
               target="_self"
+              prefetch={false}
             >
               Trusting the Laravel Valet cert
             </Link>
           </li>
 
           <li>
-            <Link href={`/posts/where-are-the-product-people`} target="_self">
+            <Link
+              href={`/posts/where-are-the-product-people`}
+              target="_self"
+              prefetch={false}
+            >
               Where are the product people?
             </Link>
           </li>
 
           <li>
-            <Link href={`/posts/starship-mission-to-mars`} target="_self">
+            <Link
+              href={`/posts/starship-mission-to-mars`}
+              target="_self"
+              prefetch={false}
+            >
               Starship Mission to Mars
             </Link>
           </li>
@@ -95,19 +109,28 @@ export default function Home() {
             <Link
               href={`/posts/implement-rigorously-the-five-step-process`}
               target="_self"
+              prefetch={false}
             >
               Implement Rigorously: The Five Step Process
             </Link>
           </li>
 
           <li>
-            <Link href={`/posts/how-to-install-amqp-on-macos`} target="_self">
+            <Link
+              href={`/posts/how-to-install-amqp-on-macos`}
+              target="_self"
+              prefetch={false}
+            >
               How to install AMQP on macOS
             </Link>
           </li>
 
           <li>
-            <Link href={`/posts/what-did-you-undesign`} target="_self">
+            <Link
+              href={`/posts/what-did-you-undesign`}
+              target="_self"
+              prefetch={false}
+            >
               What did you undesign?
             </Link>
           </li>
@@ -116,25 +139,38 @@ export default function Home() {
             <Link
               href={`/posts/deploying-an-application-using-dokku-with-https-and-redirects`}
               target="_self"
+              prefetch={false}
             >
               Deploying an application using Dokku (with HTTPS and redirects)
             </Link>
           </li>
 
           <li>
-            <Link href={`/posts/setup-lets-encrypt-with-nginx`} target="_self">
+            <Link
+              href={`/posts/setup-lets-encrypt-with-nginx`}
+              target="_self"
+              prefetch={false}
+            >
               Setup Let&apos;s Encrypt with Nginx
             </Link>
           </li>
 
           <li>
-            <Link href={`/posts/retrieve-submodules-with-git`} target="_self">
+            <Link
+              href={`/posts/retrieve-submodules-with-git`}
+              target="_self"
+              prefetch={false}
+            >
               Retrieve submodules with Git
             </Link>
           </li>
 
           <li>
-            <Link href={`/posts/never-forget-backups`} target="_self">
+            <Link
+              href={`/posts/never-forget-backups`}
+              target="_self"
+              prefetch={false}
+            >
               Never. Forget. Backups.
             </Link>
           </li>
