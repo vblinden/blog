@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: PostPageProps) {
 
   if (!post) {
     return {
-      title: "Post Not Found",
+      title: "Post not found",
     };
   }
 
