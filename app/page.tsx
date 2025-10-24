@@ -1,65 +1,146 @@
-import Image from "next/image";
+import Link from "@/components/link";
+import { getAllPosts } from "@/lib/posts";
 
 export default function Home() {
+  const posts = getAllPosts();
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <>
+      <div className="my-8">
+        <p className="text-justify">
+          Hey friends, my name is Vincent van der Linden and you can find me
+          online as{" "}
+          <Link href="https://github.com/vblinden" target="_blank">
+            @vblinden
+          </Link>
+          . I am currently working at{" "}
+          <Link href="https://team.blue" target="_blank">
+            team.blue
+          </Link>{" "}
+          as a senior software engineer. This is my little corner of the web for
+          stuff I&apos;ve found important, handy, or just wanted to save. Hope
+          you find something interesting! The opinions expressed herein are my
+          own personal opinions and do not represent my employer&apos;s view in
+          any way.
+        </p>
+      </div>
+
+      <section className="mb-8">
+        <h2 className="font-bold font-display mb-3 text-2xl">Posts.</h2>
+        <ul className="list-inside list-disc ml-6">
+          {posts.map((post) => (
+            <li key={post.slug}>
+              <Link href={`/posts/${post.slug}`} target="_self">
+                {post.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="mb-8">
+        <h2 className="font-bold font-display mb-3 text-2xl">Projects.</h2>
+        <dl>
+          <dt className="fw-normal">
+            <Link href="https://sendwich.dev" target="_blank">
+              sendwich.dev
+            </Link>
+          </dt>
+          <dd className="text-justify">
+            It&apos;s a lean, developer-first transactional email service that
+            delivers the essentials without the bloat, gimmicks, or hidden
+            pricing tricks.
+          </dd>
+
+          <dt className="mt-3 fw-normal">
+            <Link href="https://www.checkeroni.com" target="_blank">
+              checkeroni.com
+            </Link>
+          </dt>
+          <dd className="text-justify">
+            Minimal, simple and inexpensive 24/7 uptime monitoring service.
+            Create an account, add an url, and it will check it every couple of
+            minutes. When the url is down, it will notify you via email, SMS or
+            by pinging a webhook.
+          </dd>
+
+          <dt className="mt-3 fw-normal">
+            <Link href="https://whatswrong.dev" target="_blank">
+              whatswrong.dev
+            </Link>
+          </dt>
+          <dd className="text-justify">
+            Great tool to help you find out what&apos;s wrong with your website.
+            Application exception tracking service for Laravel. A sort of Sentry
+            light.
+          </dd>
+
+          <dt className="mt-3 fw-normal">
+            <Link href="https://staravatars.com" target="_blank">
+              staravatars.com
+            </Link>
+          </dt>
+          <dd className="text-justify">
+            Create beautiful space and star based avatars based on the text
+            provided. I use this for my own projects to get rid of the boring
+            default avatars.
+          </dd>
+
+          {/* <dt className="mt-3 fw-normal">
+            <Link href="https://feedbackwidget.dev" target="_blank">
+              feedbackwidget.dev
+            </Link>
+          </dt>
+          <dd>
+            Gain unparalleled insights and fuel your growth with our intuitive
+            feedback widget! Easily gather user feedback directly from your
+            website using our simple, customizable forms. No coding required.
+            For ultimate flexibility, our API access lets you tailor feedback
+            collection to your unique workflows.
+          </dd> */}
+
+          <dt className="mt-3 fw-normal">
+            <Link href="https://nederboard.nl" target="_blank">
+              nederboard.nl
+            </Link>
+          </dt>
+          <dd className="text-justify">
+            A soundboard with snippets from all kinds of different meme videos
+            in the Netherlands. Including classics like{" "}
+            <Link
+              href="https://nederboard.nl/board/helemaalknettah"
+              target="_blank"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+              Helemaal knettah
+            </Link>{" "}
+            and{" "}
+            <Link href="https://nederboard.nl/board/rustahg" target="_blank">
+              Rustahg
+            </Link>{" "}
+            plus a dozen more!
+          </dd>
+
+          <dt className="mt-3 fw-normal">
+            <Link href="https://iloveitshipit.com" target="_blank">
+              iloveitshipit.com
+            </Link>
+          </dt>
+          <dd className="text-justify">
+            Small and for fun soundboard of the legendary words spoken by{" "}
+            <Link href="https://www.hanselman.com" target="_blank">
+              Scott Hanselman
+            </Link>{" "}
+            during a .NET conference back in the day.
+          </dd>
+        </dl>
+      </section>
+
+      <section className="mb-8">
+        <h2 className="text-2xl font-bold font-display mb-3">Contact.</h2>
+        <p>
+          You can reach me at{" "}
+          <span className="lowercase">blog [at] vblinden.dev</span>.
+        </p>
+      </section>
+    </>
   );
 }
