@@ -17,7 +17,7 @@ use Tempest\Highlight\CommonMark\HighlightExtension;
 class BlogPostRepository
 {
     /**
-     * @return array<int, array{slug: string, title: string, date: string, html: string, description: string, published_at_iso8601: ?string}>
+     * @return array<int, array{slug: string, title: string, date: string, html: string, description: string, reading_time: int, published_at_iso8601: ?string}>
      */
     public function all(): array
     {
@@ -33,7 +33,7 @@ class BlogPostRepository
     }
 
     /**
-     * @return array{slug: string, title: string, date: string, html: string, description: string, published_at_iso8601: ?string}|null
+     * @return array{slug: string, title: string, date: string, html: string, description: string, reading_time: int, published_at_iso8601: ?string}|null
      */
     public function find(string $slug): ?array
     {
@@ -53,7 +53,7 @@ class BlogPostRepository
     }
 
     /**
-     * @return array{slug: string, title: string, date: string, html: string, description: string, published_at_iso8601: ?string, published_at: int}|null
+     * @return array{slug: string, title: string, date: string, html: string, description: string, reading_time: int, published_at_iso8601: ?string, published_at: int}|null
      */
     private function parseFile(string $path): ?array
     {
@@ -77,6 +77,7 @@ class BlogPostRepository
             'date' => $date,
             'html' => $html,
             'description' => $this->descriptionFor($frontMatter, $html),
+            'reading_time' => $this->readingTimeFor($html),
             'published_at_iso8601' => $this->iso8601For($publishedAtTimestamp),
             'published_at' => $publishedAtTimestamp,
         ];
@@ -134,9 +135,21 @@ class BlogPostRepository
             return trim($description, "\"' ");
         }
 
-        $plainText = trim(preg_replace('/\s+/', ' ', strip_tags($html)) ?? '');
+        $plainText = $this->plainTextFromHtml($html);
 
         return Str::limit($plainText, 160);
+    }
+
+    private function readingTimeFor(string $html): int
+    {
+        $wordCount = str_word_count($this->plainTextFromHtml($html));
+
+        return max(1, (int) ceil($wordCount / 200));
+    }
+
+    private function plainTextFromHtml(string $html): string
+    {
+        return trim(preg_replace('/\s+/', ' ', strip_tags($html)) ?? '');
     }
 
     private function iso8601For(int $timestamp): ?string

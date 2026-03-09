@@ -116,7 +116,7 @@
     }
 
     .lede {
-        @apply text-[1.05rem] leading-8;
+        @apply text-base leading-7;
         color: var(--color-ink);
     }
 
@@ -148,12 +148,17 @@
     }
 
     .article-title {
-        @apply text-4xl font-semibold tracking-tight sm:text-5xl;
+        @apply mt-3 text-4xl font-semibold tracking-tight sm:text-5xl;
         font-family: var(--font-serif);
     }
 
     .article-date {
-        @apply mt-2 block text-sm uppercase tracking-[0.18em];
+        @apply block text-sm uppercase tracking-[0.18em];
+        color: var(--color-muted);
+    }
+
+    .article-meta {
+        @apply mt-3 text-sm;
         color: var(--color-muted);
     }
 

@@ -21,8 +21,10 @@ it('renders an individual blog post', function () {
 
     $response
         ->assertSuccessful()
+        ->assertSeeInOrder(['September 12, 2025', 'Tinkerers make better engineers', '3 min read'], false)
         ->assertSee('Tinkerers make better engineers')
         ->assertSee('September 12, 2025')
+        ->assertSee('3 min read')
         ->assertSee('rel="canonical"', false)
         ->assertSee(route('posts.show', 'tinkerers-make-better-engineers'), false)
         ->assertSee('<meta property="og:type" content="article">', false)
