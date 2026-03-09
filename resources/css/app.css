@@ -121,15 +121,15 @@
     }
 
     .post-list {
-        @apply space-y-3;
+        @apply space-y-1 leading-7;
     }
 
     .post-list a {
-        @apply text-lg;
+        @apply text-base;
     }
 
     .project-list dt {
-        @apply mt-4 text-lg font-medium;
+        @apply mt-4 text-base font-medium;
     }
 
     .project-list dd {
