@@ -1,7 +1,4 @@
-<x-layouts.blog
-    :title="$post['title'].' - vblinden'"
-    :description="$post['title']"
->
+<x-layouts.blog :seo="$seo">
     <article class="max-w-3xl">
         <header class="article-header">
             <h1 class="article-title">{{ $post['title'] }}</h1>

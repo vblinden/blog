@@ -6,6 +6,11 @@ it('renders the blog homepage', function () {
     $response
         ->assertSuccessful()
         ->assertSee('vblinden.')
+        ->assertSee('rel="canonical"', false)
+        ->assertSee(route('home'), false)
+        ->assertSee('<meta property="og:type" content="website">', false)
+        ->assertSee('<meta name="twitter:card" content="summary">', false)
+        ->assertSee('"@type":"WebSite"', false)
         ->assertSee('data-theme-toggle', false)
         ->assertSee('Tinkerers make better engineers')
         ->assertSee('sendwich.dev');
@@ -18,6 +23,12 @@ it('renders an individual blog post', function () {
         ->assertSuccessful()
         ->assertSee('Tinkerers make better engineers')
         ->assertSee('September 12, 2025')
+        ->assertSee('rel="canonical"', false)
+        ->assertSee(route('posts.show', 'tinkerers-make-better-engineers'), false)
+        ->assertSee('<meta property="og:type" content="article">', false)
+        ->assertSee('<meta property="article:published_time" content="2025-09-12T00:00:00+00:00">', false)
+        ->assertSee('Some of the best engineers I know are tinkerers.', false)
+        ->assertSee('"@type":"BlogPosting"', false)
         ->assertSee('Some of the best engineers I know are tinkerers.');
 });
 

@@ -1,7 +1,4 @@
-<x-layouts.blog
-    title="vblinden"
-    description="I am currently working at team.blue as a senior software engineer. This is my little corner of the web for stuff I have found important, handy, or just wanted to save."
->
+<x-layouts.blog :seo="$seo">
     <main class="space-y-14">
         <section class="max-w-3xl">
             <p class="lede">

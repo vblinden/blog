@@ -17,7 +17,7 @@ use Tempest\Highlight\CommonMark\HighlightExtension;
 class BlogPostRepository
 {
     /**
-     * @return array<int, array{slug: string, title: string, date: string, html: string}>
+     * @return array<int, array{slug: string, title: string, date: string, html: string, description: string, published_at_iso8601: ?string}>
      */
     public function all(): array
     {
@@ -33,7 +33,7 @@ class BlogPostRepository
     }
 
     /**
-     * @return array{slug: string, title: string, date: string, html: string}|null
+     * @return array{slug: string, title: string, date: string, html: string, description: string, published_at_iso8601: ?string}|null
      */
     public function find(string $slug): ?array
     {
@@ -53,7 +53,7 @@ class BlogPostRepository
     }
 
     /**
-     * @return array{slug: string, title: string, date: string, html: string, published_at: int}|null
+     * @return array{slug: string, title: string, date: string, html: string, description: string, published_at_iso8601: ?string, published_at: int}|null
      */
     private function parseFile(string $path): ?array
     {
@@ -68,13 +68,17 @@ class BlogPostRepository
         $slug = pathinfo($path, PATHINFO_FILENAME);
         $title = $frontMatter['title'] ?? Str::headline($slug);
         $date = trim($frontMatter['date'] ?? '');
+        $html = $this->renderMarkdown($markdown);
+        $publishedAtTimestamp = $this->timestampFor($date);
 
         return [
             'slug' => $slug,
             'title' => trim($title, "\"' "),
             'date' => $date,
-            'html' => $this->renderMarkdown($markdown),
-            'published_at' => $this->timestampFor($date),
+            'html' => $html,
+            'description' => $this->descriptionFor($frontMatter, $html),
+            'published_at_iso8601' => $this->iso8601For($publishedAtTimestamp),
+            'published_at' => $publishedAtTimestamp,
         ];
     }
 
@@ -117,6 +121,31 @@ class BlogPostRepository
         } catch (\Throwable) {
             return 0;
         }
+    }
+
+    /**
+     * @param  array<string, string>  $frontMatter
+     */
+    private function descriptionFor(array $frontMatter, string $html): string
+    {
+        $description = trim($frontMatter['description'] ?? '');
+
+        if ($description !== '') {
+            return trim($description, "\"' ");
+        }
+
+        $plainText = trim(preg_replace('/\s+/', ' ', strip_tags($html)) ?? '');
+
+        return Str::limit($plainText, 160);
+    }
+
+    private function iso8601For(int $timestamp): ?string
+    {
+        if ($timestamp === 0) {
+            return null;
+        }
+
+        return CarbonImmutable::createFromTimestampUTC($timestamp)->toAtomString();
     }
 
     private function renderMarkdown(string $markdown): string

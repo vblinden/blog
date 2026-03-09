@@ -4,15 +4,44 @@ namespace App\Http\Controllers;
 
 use App\Services\BlogPostRepository;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Arr;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class BlogController extends Controller
 {
     public function index(BlogPostRepository $posts): View
     {
+        $homepageDescription = 'Personal blog of Vincent van der Linden about software engineering, side projects, deployment, Laravel, and practical lessons from building things.';
+
         return view('blog.index', [
             'posts' => $posts->all(),
             'projects' => $this->projects(),
+            'seo' => [
+                'title' => 'vblinden',
+                'description' => $homepageDescription,
+                'canonical' => route('home'),
+                'ogType' => 'website',
+                'jsonLd' => [
+                    [
+                        '@context' => 'https://schema.org',
+                        '@type' => 'WebSite',
+                        'name' => 'vblinden',
+                        'url' => route('home'),
+                        'description' => $homepageDescription,
+                    ],
+                    [
+                        '@context' => 'https://schema.org',
+                        '@type' => 'Blog',
+                        'name' => 'vblinden',
+                        'url' => route('home'),
+                        'description' => $homepageDescription,
+                        'author' => [
+                            '@type' => 'Person',
+                            'name' => 'Vincent van der Linden',
+                        ],
+                    ],
+                ],
+            ],
         ]);
     }
 
@@ -26,6 +55,33 @@ class BlogController extends Controller
 
         return view('blog.show', [
             'post' => $post,
+            'seo' => [
+                'title' => "{$post['title']} - vblinden",
+                'description' => $post['description'],
+                'canonical' => route('posts.show', $post['slug']),
+                'ogType' => 'article',
+                'publishedTime' => $post['published_at_iso8601'],
+                'jsonLd' => [
+                    Arr::whereNotNull([
+                        '@context' => 'https://schema.org',
+                        '@type' => 'BlogPosting',
+                        'headline' => $post['title'],
+                        'description' => $post['description'],
+                        'datePublished' => $post['published_at_iso8601'],
+                        'dateModified' => $post['published_at_iso8601'],
+                        'mainEntityOfPage' => route('posts.show', $post['slug']),
+                        'url' => route('posts.show', $post['slug']),
+                        'author' => [
+                            '@type' => 'Person',
+                            'name' => 'Vincent van der Linden',
+                        ],
+                        'publisher' => [
+                            '@type' => 'Person',
+                            'name' => 'Vincent van der Linden',
+                        ],
+                    ]),
+                ],
+            ],
         ]);
     }
 
