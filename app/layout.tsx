@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Instrument_Sans } from "next/font/google";
 import Link from "next/link";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
@@ -11,6 +12,13 @@ import {
 } from "@/lib/site";
 
 import "./globals.css";
+
+const instrumentSans = Instrument_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-instrument-sans",
+  display: "swap",
+});
 
 const siteUrl = buildAbsoluteUrl("/");
 
@@ -68,7 +76,7 @@ export default function RootLayout({
         </Script>
       </head>
 
-      <body>
+      <body className={instrumentSans.variable}>
         <div className="page-shell">
           <header className="site-header">
             <h1 className="site-title">

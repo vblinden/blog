@@ -1,33 +1,9 @@
 @import "tailwindcss";
 @import "highlight.js/styles/github-dark.css";
 
-@font-face {
-  font-family: "Instrument Sans";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/instrument-sans-latin-400-normal.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Instrument Sans";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("/fonts/instrument-sans-latin-500-normal.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Instrument Sans";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("/fonts/instrument-sans-latin-600-normal.woff2") format("woff2");
-}
-
 @theme {
   --font-sans:
-    "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+    var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
     "Noto Color Emoji";
   --font-serif:
