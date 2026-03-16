@@ -1,62 +1,265 @@
 @import "tailwindcss";
-@import "highlight.js/styles/atom-one-dark.css";
+@import "highlight.js/styles/github-dark.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/instrument-sans-latin-400-normal.woff2") format("woff2");
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/instrument-sans-latin-500-normal.woff2") format("woff2");
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/instrument-sans-latin-600-normal.woff2") format("woff2");
+}
+
+@theme {
+  --font-sans:
+    "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+  --font-serif:
+    "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  --color-ink: #161617;
+  --color-muted: #4b5563;
+  --color-paper: #fffdf8;
+  --color-paper-strong: #fffefb;
+  --color-accent: #1d4ed8;
+  --color-accent-strong: #1e3a8a;
+  --color-rule: #d6d3d1;
+  --color-code-bg: #111827;
+  --color-code-fg: #f8fafc;
+  --color-inline-code-bg: rgba(15, 23, 42, 0.08);
+  --color-inline-code-fg: #0f172a;
+  --color-selection: rgba(59, 130, 246, 0.18);
+  --color-surface: rgba(255, 255, 255, 0.72);
+  --color-surface-hover: rgba(255, 255, 255, 0.92);
+  --page-glow: rgba(191, 219, 254, 0.35);
 }
 
 html {
-    scrollbar-gutter: stable;
+  scrollbar-gutter: stable;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, var(--page-glow), transparent 32rem),
+    linear-gradient(180deg, var(--color-paper-strong) 0%, var(--color-paper) 100%);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    background-image 200ms ease;
 }
 
-.markdown p {
-    @apply mb-4 text-justify;
+::selection {
+  background: var(--color-selection);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: var(--color-accent-strong);
+}
+
+html.dark {
+  --color-ink: #e5e7eb;
+  --color-muted: #94a3b8;
+  --color-paper: #020617;
+  --color-paper-strong: #0f172a;
+  --color-accent: #93c5fd;
+  --color-accent-strong: #dbeafe;
+  --color-rule: #334155;
+  --color-inline-code-bg: rgba(148, 163, 184, 0.18);
+  --color-inline-code-fg: #e2e8f0;
+  --color-selection: rgba(147, 197, 253, 0.28);
+  --color-surface: rgba(15, 23, 42, 0.72);
+  --color-surface-hover: rgba(30, 41, 59, 0.9);
+  --page-glow: rgba(29, 78, 216, 0.26);
+}
+
+.page-shell {
+  @apply mx-auto max-w-4xl px-5 pb-12 pt-10 sm:px-8;
+}
+
+.site-header {
+  @apply mb-10 flex items-center justify-between gap-4;
+}
+
+.site-title {
+  @apply text-4xl font-semibold tracking-tight;
+  font-family: var(--font-serif);
+}
+
+.theme-toggle {
+  @apply inline-flex cursor-pointer items-center justify-center rounded-full border px-3 py-1.5 text-sm font-medium no-underline transition;
+  border-color: var(--color-rule);
+  background: var(--color-surface);
+  color: var(--color-ink);
+}
+
+.theme-toggle-icon {
+  @apply block text-base leading-none;
+}
+
+.theme-toggle:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-ink);
+}
+
+.theme-toggle:focus-visible {
+  @apply outline-none ring-2 ring-offset-2;
+  --tw-ring-color: color-mix(in srgb, var(--color-accent) 55%, transparent);
+  --tw-ring-offset-color: var(--color-paper);
+}
+
+.section-title {
+  @apply mb-4 text-2xl font-semibold tracking-tight;
+  font-family: var(--font-serif);
+}
+
+.lede {
+  @apply text-base leading-7;
+  color: var(--color-ink);
+}
+
+.post-list {
+  @apply space-y-1 leading-7;
+}
+
+.post-list a {
+  @apply text-base;
+}
+
+.project-list dt {
+  @apply mt-4 text-base font-medium;
+}
+
+.project-list dd {
+  @apply mt-1 leading-7;
+  color: var(--color-muted);
+}
+
+.article-header {
+  @apply border-b pb-8;
+  border-color: var(--color-rule);
+}
+
+.article-footer {
+  @apply mt-12 border-t pt-8;
+  border-color: var(--color-rule);
+}
+
+.article-title {
+  @apply mt-3 text-4xl font-semibold tracking-tight sm:text-5xl;
+  font-family: var(--font-serif);
+}
+
+.article-date {
+  @apply block text-sm uppercase tracking-[0.18em];
+  color: var(--color-muted);
+}
+
+.article-meta {
+  @apply mt-3 text-sm;
+  color: var(--color-muted);
+}
+
+.markdown {
+  @apply mt-10 text-[1.05rem] leading-8;
+  color: var(--color-ink);
+}
+
+.markdown > * + * {
+  @apply mt-5;
 }
 
 .markdown h2 {
-    @apply mb-1 text-xl font-bold text-justify;
+  @apply mt-10 text-2xl font-semibold tracking-tight;
+  color: var(--color-ink);
+  font-family: var(--font-serif);
 }
 
-.markdown pre {
-    @apply text-base mb-4 rounded shadow-sm overflow-auto;
+.markdown h3 {
+  @apply mt-8 text-xl font-semibold;
+  color: var(--color-ink);
+  font-family: var(--font-serif);
 }
 
-.markdown code {
-    @apply text-base px-1 rounded shadow-sm;
+.markdown p,
+.markdown li,
+.markdown blockquote {
+  text-wrap: pretty;
 }
 
-.markdown p code {
-    background-color: rgb(40, 44, 52);
-    @apply text-white shadow-none;
-}
-
-.markdown .disclaimer {
-    @apply text-xs text-slate-500 dark:text-zinc-600 mt-2;
+.markdown ul,
+.markdown ol {
+  @apply ml-6 space-y-2;
 }
 
 .markdown ul {
-    @apply list-disc list-inside mb-4 ml-6;
+  list-style: disc;
 }
 
+.markdown ol {
+  list-style: decimal;
+}
 
+.markdown pre {
+  @apply overflow-x-auto rounded-2xl px-5 py-4 text-sm leading-6 shadow-sm;
+  background: var(--color-code-bg);
+  color: var(--color-code-fg);
+}
+
+.markdown pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+.markdown :not(pre) > code {
+  @apply rounded-md px-1.5 py-0.5 text-sm;
+  background: var(--color-inline-code-bg);
+  color: var(--color-inline-code-fg);
+}
+
+.markdown blockquote {
+  @apply border-l-2 pl-5 italic;
+  border-color: var(--color-rule);
+  color: var(--color-muted);
+}
+
+.markdown hr {
+  @apply my-8 border-0 border-t;
+  border-color: var(--color-rule);
+}
+
+.markdown iframe {
+  @apply my-6 block w-full max-w-full rounded-2xl shadow-sm;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  height: auto;
+}
+
+.markdown .disclaimer {
+  @apply mt-2 text-xs;
+  color: var(--color-muted);
+}

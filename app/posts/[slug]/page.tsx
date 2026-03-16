@@ -1,21 +1,24 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getPostData, getAllPostSlugs } from "@/lib/posts";
+
 import Link from "@/components/link";
 import Markdown from "@/components/markdown";
+import { getAllPostSlugs, getPostData } from "@/lib/posts";
+import { buildAbsoluteUrl, siteName } from "@/lib/site";
 
 interface PostPageProps {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  const slugs = getAllPostSlugs();
-
-  return slugs.map((slug) => ({
+  return getAllPostSlugs().map((slug) => ({
     slug,
   }));
 }
 
-export async function generateMetadata({ params }: PostPageProps) {
+export async function generateMetadata({
+  params,
+}: PostPageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostData(slug);
 
@@ -25,9 +28,32 @@ export async function generateMetadata({ params }: PostPageProps) {
     };
   }
 
+  const canonicalUrl = buildAbsoluteUrl(`/posts/${post.slug}`);
+  const title = `${post.title} - vblinden`;
+
   return {
-    title: `${post.title} — vblinden`,
-    description: post.title,
+    title,
+    description: post.description,
+    alternates: canonicalUrl
+      ? {
+          canonical: canonicalUrl,
+        }
+      : undefined,
+    openGraph: {
+      type: "article",
+      siteName,
+      title,
+      description: post.description,
+      ...(canonicalUrl ? { url: canonicalUrl } : {}),
+      ...(post.publishedAtIso8601
+        ? { publishedTime: post.publishedAtIso8601 }
+        : {}),
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description: post.description,
+    },
   };
 }
 
@@ -39,30 +65,58 @@ export default async function PostPage({ params }: PostPageProps) {
     notFound();
   }
 
+  const canonicalUrl = buildAbsoluteUrl(`/posts/${post.slug}`);
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    author: {
+      "@type": "Person",
+      name: "Vincent van der Linden",
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Vincent van der Linden",
+    },
+    ...(canonicalUrl
+      ? {
+          mainEntityOfPage: canonicalUrl,
+          url: canonicalUrl,
+        }
+      : {}),
+    ...(post.publishedAtIso8601
+      ? {
+          datePublished: post.publishedAtIso8601,
+          dateModified: post.publishedAtIso8601,
+        }
+      : {}),
+  };
+
   return (
-    <article className="markdown prose prose-lg prose-gray max-w-none dark:prose-invert">
-      <header className="mb-8">
-        <h1 className="text-4xl font-bold font-display mb-1">{post.title}</h1>
-        {post.date && (
-          <time className="text-gray-600 dark:text-gray-400">
-            {new Date(post.date).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </time>
-        )}
-      </header>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
-      <div className="prose prose-lg max-w-none dark:prose-invert">
-        <Markdown content={post.content} />
-      </div>
+      <article className="max-w-3xl">
+        <header className="article-header">
+          {post.date !== "" && <time className="article-date">{post.date}</time>}
 
-      <footer className="mt-12 pt-8">
-        <Link href="/" target="_self">
-          Back to home
-        </Link>
-      </footer>
-    </article>
+          <h1 className="article-title">{post.title}</h1>
+
+          <p className="article-meta">{post.readingTime} min read</p>
+        </header>
+
+        <div className="markdown">
+          <Markdown content={post.content} />
+        </div>
+
+        <footer className="article-footer">
+          <Link href="/">Back to home</Link>
+        </footer>
+      </article>
+    </>
   );
 }

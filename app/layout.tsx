@@ -1,24 +1,45 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
+import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
+
+import {
+  buildAbsoluteUrl,
+  homeDescription,
+  siteName,
+  siteTitle,
+} from "@/lib/site";
 
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const siteUrl = buildAbsoluteUrl("/");
 
 export const metadata: Metadata = {
-  title: "vblinden",
-  description:
-    "I am currently working at team.blue as a senior software engineer. This is my little corner of the web for stuff I've found important, handy, or just wanted to save. Hope you find something interesting!",
+  metadataBase: siteUrl ? new URL(siteUrl) : undefined,
+  title: siteTitle,
+  description: homeDescription,
+  authors: [{ name: "Vincent van der Linden" }],
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: siteUrl
+    ? {
+        canonical: "/",
+      }
+    : undefined,
+  openGraph: {
+    type: "website",
+    siteName,
+    title: siteTitle,
+    description: homeDescription,
+    url: siteUrl ?? undefined,
+  },
+  twitter: {
+    card: "summary",
+    title: siteTitle,
+    description: homeDescription,
+  },
 };
 
 export default function RootLayout({
@@ -27,34 +48,112 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link
           rel="shortcut icon"
           href="data:image/x-icon;,"
           type="image/x-icon"
         />
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`(() => {
+            const storageKey = 'theme';
+            const storedTheme = localStorage.getItem(storageKey);
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const activeTheme = storedTheme ?? (prefersDark ? 'dark' : 'light');
+
+            document.documentElement.classList.toggle('dark', activeTheme === 'dark');
+            document.documentElement.style.colorScheme = activeTheme;
+          })();`}
+        </Script>
       </head>
 
-      <body
-        className={`text-lg antialiased ${geistSans.variable} ${geistMono.variable}`}
-      >
-        <div className="max-w-4xl mx-auto mb-8">
-          <div className="mx-3">
-            <div className="my-8">
-              <h1 className="text-3xl font-bold mb-3 font-sans">
-                <Link
-                  href="/"
-                  className="hover:text-blue-600 dark:text-white dark:hover:text-slate-100 text-4xl font-display"
-                >
-                  vblinden.
-                </Link>
-              </h1>
-            </div>
+      <body>
+        <div className="page-shell">
+          <header className="site-header">
+            <h1 className="site-title">
+              <Link href="/" className="no-underline">
+                vblinden.
+              </Link>
+            </h1>
 
-            {children}
-          </div>
+            <button
+              type="button"
+              className="theme-toggle"
+              data-theme-toggle
+              aria-label="Switch to dark mode"
+              aria-pressed="false"
+            >
+              <span
+                className="theme-toggle-icon"
+                data-theme-toggle-icon
+                aria-hidden="true"
+              >
+                ☀️
+              </span>
+              <span className="sr-only" data-theme-toggle-label>
+                Dark mode
+              </span>
+            </button>
+          </header>
+
+          {children}
         </div>
+
+        <Script id="theme-toggle" strategy="afterInteractive">
+          {`const storageKey = 'theme';
+const themeToggle = document.querySelector('[data-theme-toggle]');
+const themeToggleLabel = document.querySelector('[data-theme-toggle-label]');
+const themeToggleIcon = document.querySelector('[data-theme-toggle-icon]');
+const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+const applyTheme = (theme) => {
+    const isDark = theme === 'dark';
+
+    document.documentElement.classList.toggle('dark', isDark);
+    document.documentElement.style.colorScheme = theme;
+
+    if (themeToggle !== null) {
+        themeToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+        themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+
+    if (themeToggleLabel !== null) {
+        themeToggleLabel.textContent = isDark ? 'Light mode' : 'Dark mode';
+    }
+
+    if (themeToggleIcon !== null) {
+        themeToggleIcon.textContent = isDark ? '🌕' : '☀️';
+    }
+};
+
+const resolveInitialTheme = () => {
+    const storedTheme = window.localStorage.getItem(storageKey);
+
+    if (storedTheme === 'light' || storedTheme === 'dark') {
+        return storedTheme;
+    }
+
+    return mediaQuery.matches ? 'dark' : 'light';
+};
+
+applyTheme(resolveInitialTheme());
+
+themeToggle?.addEventListener('click', () => {
+    const nextTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+
+    window.localStorage.setItem(storageKey, nextTheme);
+    applyTheme(nextTheme);
+});
+
+mediaQuery.addEventListener('change', (event) => {
+    if (window.localStorage.getItem(storageKey) !== null) {
+        return;
+    }
+
+    applyTheme(event.matches ? 'dark' : 'light');
+});`}
+        </Script>
         <Analytics />
       </body>
     </html>
