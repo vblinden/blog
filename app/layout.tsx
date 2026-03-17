@@ -42,10 +42,6 @@ export const metadata: Metadata = {
   title: siteTitle,
   description: homeDescription,
   authors: [{ name: "vblinden" }],
-  icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
-    shortcut: "/icon.svg",
-  },
   robots: {
     index: true,
     follow: true,
