@@ -2,10 +2,6 @@
 @import "highlight.js/styles/github-dark.css";
 
 @theme {
-  --font-sans:
-    var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-    "Noto Color Emoji";
   --font-serif:
     "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
   --color-ink: #161617;
@@ -27,6 +23,7 @@
 
 html {
   scrollbar-gutter: stable;
+  color-scheme: light;
 }
 
 body {
@@ -70,6 +67,26 @@ html.dark {
   --color-surface: rgba(15, 23, 42, 0.72);
   --color-surface-hover: rgba(30, 41, 59, 0.9);
   --page-glow: rgba(29, 78, 216, 0.26);
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) {
+    --color-ink: #e5e7eb;
+    --color-muted: #94a3b8;
+    --color-paper: #020617;
+    --color-paper-strong: #0f172a;
+    --color-accent: #93c5fd;
+    --color-accent-strong: #dbeafe;
+    --color-rule: #334155;
+    --color-inline-code-bg: rgba(148, 163, 184, 0.18);
+    --color-inline-code-fg: #e2e8f0;
+    --color-selection: rgba(147, 197, 253, 0.28);
+    --color-surface: rgba(15, 23, 42, 0.72);
+    --color-surface-hover: rgba(30, 41, 59, 0.9);
+    --page-glow: rgba(29, 78, 216, 0.26);
+    color-scheme: dark;
+  }
 }
 
 .page-shell {

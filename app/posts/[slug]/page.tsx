@@ -73,11 +73,11 @@ export default async function PostPage({ params }: PostPageProps) {
     description: post.description,
     author: {
       "@type": "Person",
-      name: "Vincent van der Linden",
+      name: "vblinden",
     },
     publisher: {
       "@type": "Person",
-      name: "Vincent van der Linden",
+      name: "vblinden",
     },
     ...(canonicalUrl
       ? {
@@ -102,7 +102,9 @@ export default async function PostPage({ params }: PostPageProps) {
 
       <article className="max-w-3xl">
         <header className="article-header">
-          {post.date !== "" && <time className="article-date">{post.date}</time>}
+          {post.date !== "" && (
+            <time className="article-date">{post.date}</time>
+          )}
 
           <h1 className="article-title">{post.title}</h1>
 

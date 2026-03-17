@@ -1,7 +1,7 @@
 export const siteName = "vblinden";
 export const siteTitle = "vblinden";
 export const homeDescription =
-  "Personal blog of Vincent van der Linden about software engineering, side projects, deployment, Laravel, and practical lessons from building things.";
+  "Personal blog of vblinden about software engineering, side projects, deployment, Laravel, and practical lessons from building things.";
 
 const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(
   /\/$/,

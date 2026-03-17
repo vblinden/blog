@@ -52,7 +52,7 @@ export default function Home() {
       description: homeDescription,
       author: {
         "@type": "Person",
-        name: "Vincent van der Linden",
+        name: "vblinden",
       },
       ...(canonicalUrl ? { url: canonicalUrl } : {}),
     },
