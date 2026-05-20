@@ -19,6 +19,19 @@ class MarkdownRenderer
         $environment = new Environment([
             'html_input' => 'allow',
             'allow_unsafe_links' => false,
+            'disallowed_raw_html' => [
+                // GFM blocks iframes by default; allow them for embedded videos in posts.
+                'disallowed_tags' => [
+                    'title',
+                    'textarea',
+                    'style',
+                    'xmp',
+                    'noembed',
+                    'noframes',
+                    'script',
+                    'plaintext',
+                ],
+            ],
         ]);
 
         $environment

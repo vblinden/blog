@@ -16,6 +16,15 @@ it('renders a blog post page', function () {
     $response->assertSee('A lot of developers I know and work with are constantly building for imaginary what ifs.');
 });
 
+it('renders embedded iframes in blog posts', function () {
+    $response = $this->get('/posts/starship-mission-to-mars');
+
+    $response->assertOk();
+    $response->assertSee('<iframe', false);
+    $response->assertSee('youtube-nocookie.com/embed/910AkzxgtBs', false);
+    $response->assertDontSee('&lt;iframe', false);
+});
+
 it('renders fenced code blocks with tempest highlight markup', function () {
     $response = $this->get('/posts/deploying-an-application-using-dokku-with-https-and-redirects');
 
