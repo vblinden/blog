@@ -14,16 +14,6 @@ return [
             'description' => "It's a lean, developer-first transactional email service that delivers the essentials without the bloat, gimmicks, or hidden pricing tricks.",
         ],
         [
-            'name' => 'checkeroni.com',
-            'url' => 'https://www.checkeroni.com',
-            'description' => 'Minimal, simple and inexpensive 24/7 uptime monitoring service. Create an account, add an url, and it will check it every couple of minutes. When the url is down, it will notify you via email, SMS or by pinging a webhook.',
-        ],
-        [
-            'name' => 'whatswrong.dev',
-            'url' => 'https://whatswrong.dev',
-            'description' => 'Great tool to help you find out what\'s wrong with your website. Application exception tracking service for Laravel. A sort of Sentry light.',
-        ],
-        [
             'name' => 'staravatars.com',
             'url' => 'https://staravatars.com',
             'description' => 'Create beautiful space and star based avatars based on the text provided. I use this for my own projects to get rid of the boring default avatars.',
