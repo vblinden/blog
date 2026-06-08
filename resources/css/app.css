@@ -357,9 +357,18 @@ html:not(.dark) .markdown pre .hl-variable {
     color: var(--color-muted);
 }
 
+.markdown blockquote p + p {
+    @apply mt-8;
+}
+
 .markdown hr {
     @apply my-8 border-0 border-t;
     border-color: var(--color-rule);
+}
+
+.markdown img {
+    @apply my-6 block w-full max-w-full rounded-2xl shadow-sm;
+    border: 1px solid var(--color-rule);
 }
 
 .markdown iframe {
@@ -371,5 +380,10 @@ html:not(.dark) .markdown pre .hl-variable {
 
 .markdown .disclaimer {
     @apply mt-2 text-xs;
+    color: var(--color-muted);
+}
+
+.markdown .source {
+    @apply mt-8 text-sm;
     color: var(--color-muted);
 }
