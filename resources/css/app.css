@@ -176,8 +176,7 @@ a:hover {
 }
 
 .article-header {
-    @apply border-b pb-8;
-    border-color: var(--color-rule);
+    @apply pb-8;
 }
 
 .article-title {
@@ -186,7 +185,7 @@ a:hover {
 }
 
 .article-date {
-    @apply block text-sm uppercase tracking-[0.18em];
+    @apply block text-sm leading-none uppercase;
     color: var(--color-muted);
 }
 
@@ -196,8 +195,7 @@ a:hover {
 }
 
 .article-footer {
-    @apply mt-12 border-t pt-8;
-    border-color: var(--color-rule);
+    @apply mt-12 pt-8;
 }
 
 .markdown {
@@ -364,11 +362,6 @@ html:not(.dark) .markdown pre .hl-variable {
 .markdown hr {
     @apply my-8 border-0 border-t;
     border-color: var(--color-rule);
-}
-
-.markdown img {
-    @apply my-6 block w-full max-w-full rounded-2xl shadow-sm;
-    border: 1px solid var(--color-rule);
 }
 
 .markdown iframe {
