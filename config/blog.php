@@ -9,9 +9,19 @@ return [
     'posts_path' => base_path('posts'),
     'projects' => [
         [
-            'name' => 'sendwich.dev',
-            'url' => 'https://sendwich.dev',
+            'name' => 'mailsurge.dev',
+            'url' => 'https://mailsurge.dev',
             'description' => "It's a lean, developer-first transactional email service that delivers the essentials without the bloat, gimmicks, or hidden pricing tricks.",
+        ],
+        [
+            'name' => 'pennymetrics.dev',
+            'url' => 'https://pennymetrics.dev',
+            'description' => 'A simple, privacy-friendly web analytics service that gives you the metrics that matter without cookies, bloat, or tracking your visitors.',
+        ],
+        [
+            'name' => 'goutipedia.com',
+            'url' => 'https://goutipedia.com',
+            'description' => 'An encyclopedia and knowledge base about gout — symptoms, triggers, treatments, and practical advice for managing it.',
         ],
         [
             'name' => 'staravatars.com',
