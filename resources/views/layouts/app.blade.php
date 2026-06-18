@@ -31,7 +31,7 @@
             })();
         </script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <script defer src="https://pennymetrics.dev/stats.js" data-hostname="vblinden.dev"></script>
+        <script defer src="/pm/stats.js" data-hostname="vblinden.dev" data-endpoint="/pm/i.gif"></script>
         @stack('head')
     </head>
     <body>
