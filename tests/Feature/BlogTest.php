@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Http;
+
 it('shows blog posts on the homepage', function () {
     $response = $this->get('/');
 
@@ -47,4 +49,25 @@ it('exposes sitemap and robots endpoints', function () {
         ->assertOk()
         ->assertHeader('Content-Type', 'text/plain; charset=UTF-8')
         ->assertSee('Sitemap:', false);
+});
+
+it('proxies penny metrics assets', function () {
+    Http::fake([
+        'pennymetrics.dev/stats.js' => Http::response('window.pennymetrics = {};', 200, [
+            'Content-Type' => 'application/javascript',
+        ]),
+        'pennymetrics.dev/api/i.gif*' => Http::response('GIF89a', 200, [
+            'Content-Type' => 'image/gif',
+        ]),
+    ]);
+
+    $this->get('/pm/stats.js')
+        ->assertOk()
+        ->assertHeader('Content-Type', 'application/javascript')
+        ->assertSee('window.pennymetrics', false);
+
+    $this->get('/pm/i.gif?d=abc123')
+        ->assertOk()
+        ->assertHeader('Content-Type', 'image/gif')
+        ->assertSee('GIF89a', false);
 });

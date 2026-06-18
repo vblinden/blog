@@ -16,8 +16,12 @@ Route::get('/robots.txt', function () {
     return response(view('blog.robots'), 200, ['Content-Type' => 'text/plain; charset=UTF-8']);
 })->name('robots');
 
-Route::get('/pm/stats.js', fn () => Http::get('https://pennymetrics.dev/stats.js')
-    ->toResponse(request()));
+Route::get('/pm/stats.js', function () {
+    $response = Http::get('https://pennymetrics.dev/stats.js');
+
+    return response($response->body(), $response->status())
+        ->withHeaders($response->headers());
+});
 
 Route::get('/pm/i.gif', function () {
     $response = Http::get('https://pennymetrics.dev/api/i.gif', request()->query());
