@@ -21,7 +21,7 @@ return [
         [
             'name' => 'chatwithyoursite.com',
             'url' => 'https://chatwithyoursite.com',
-            'description' => 'Crawl your website, upload PDFs and custom text, and turn it into a chatbot that answers visitors with grounded responses. Track top questions, satisfaction, and content gaps with built-in chat insights.',
+            'description' => 'Crawl your website, upload PDFs and custom text, and turn it into a chatbot that answers visitors with grounded responses. The same indexed content is available through an agent-ready search API for custom bots and copilots, with built-in chat insights to track top questions, satisfaction, and content gaps.',
         ],
         [
             'name' => 'goutipedia.com',
