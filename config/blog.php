@@ -11,12 +11,12 @@ return [
         [
             'name' => 'mailsurge.dev',
             'url' => 'https://mailsurge.dev',
-            'description' => "It's a lean, developer-first transactional email service that delivers the essentials without the bloat, gimmicks, or hidden pricing tricks.",
+            'description' => 'A lean, developer-first transactional email service that delivers the essentials without the bloat, gimmicks, or hidden pricing tricks. Verify your domain once, then send via a straightforward API with signed webhooks and delivery analytics to keep user state and suppression lists accurate.',
         ],
         [
             'name' => 'pennymetrics.dev',
             'url' => 'https://pennymetrics.dev',
-            'description' => 'A simple, privacy-friendly web analytics service that gives you the metrics that matter without cookies, bloat, or tracking your visitors.',
+            'description' => 'A simple, privacy-friendly web analytics service that gives you the metrics that matter without cookies, bloat, or tracking your visitors. Drop in a lightweight script, skip the consent banner, and see visitors, pageviews, referrers, and custom events in a clean dashboard within seconds.',
         ],
         [
             'name' => 'chatwithyoursite.com',
@@ -26,22 +26,22 @@ return [
         [
             'name' => 'goutipedia.com',
             'url' => 'https://goutipedia.com',
-            'description' => 'An encyclopedia and knowledge base about gout — symptoms, triggers, treatments, and practical advice for managing it.',
+            'description' => 'An encyclopedia and knowledge base about gout — symptoms, triggers, treatments, and practical advice for managing it. Written for patients and caregivers who want clear guidance on flares, diet, medication, and day-to-day management without wading through outdated forum posts.',
         ],
         [
             'name' => 'staravatars.com',
             'url' => 'https://staravatars.com',
-            'description' => 'Create beautiful space and star based avatars based on the text provided. I use this for my own projects to get rid of the boring default avatars.',
+            'description' => 'Create beautiful space and star based avatars from any text—a deterministic hash turns your name, email, or path into a unique cosmic portrait every time. Pick from palettes like sunset, ocean, and forest, customize shape and size, and embed them anywhere you need personality instead of a boring default avatar.',
         ],
         [
             'name' => 'nederboard.nl',
             'url' => 'https://nederboard.nl',
-            'description' => 'A soundboard with snippets from all kinds of different meme videos in the Netherlands. Including classics like <a href="https://nederboard.nl/board/helemaalknettah" target="_blank" rel="noreferrer">Helemaal knettah</a> and <a href="https://nederboard.nl/board/rustahg" target="_blank" rel="noreferrer">Rustahg</a> plus a dozen more!',
+            'description' => 'A Dutch meme soundboard packed with snippets from viral videos, TV moments, and internet classics across the Netherlands. Browse boards for fan favorites like <a href="https://nederboard.nl/board/helemaalknettah" target="_blank" rel="noreferrer">Helemaal knettah</a> and <a href="https://nederboard.nl/board/rustahg" target="_blank" rel="noreferrer">Rustahg</a>, hit play to share the clip, and discover dozens more.',
         ],
         [
             'name' => 'iloveitshipit.com',
             'url' => 'https://iloveitshipit.com',
-            'description' => 'Small and for fun soundboard of the legendary words spoken by <a href="https://www.hanselman.com" target="_blank" rel="noreferrer">Scott Hanselman</a> during a .NET conference back in the day.',
+            'description' => 'A small, for-fun soundboard of the legendary words spoken by <a href="https://www.hanselman.com" target="_blank" rel="noreferrer">Scott Hanselman</a> during a .NET conference back in the day. Click to replay "I love it, ship it" whenever you need a morale boost before merging that pull request or pushing code to production.',
         ],
     ],
 ];
