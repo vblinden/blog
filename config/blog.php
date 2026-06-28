@@ -19,6 +19,11 @@ return [
             'description' => 'A simple, privacy-friendly web analytics service that gives you the metrics that matter without cookies, bloat, or tracking your visitors.',
         ],
         [
+            'name' => 'chatwithyoursite.com',
+            'url' => 'https://chatwithyoursite.com',
+            'description' => 'Crawl your website, upload PDFs and custom text, and turn it into a chatbot that answers visitors with grounded responses. Track top questions, satisfaction, and content gaps with built-in chat insights.',
+        ],
+        [
             'name' => 'goutipedia.com',
             'url' => 'https://goutipedia.com',
             'description' => 'An encyclopedia and knowledge base about gout — symptoms, triggers, treatments, and practical advice for managing it.',
