@@ -61,13 +61,22 @@ it('proxies penny metrics assets', function () {
         ]),
     ]);
 
-    $this->get('/pm/stats.js')
+    $this->get('/pm/stats.js', ['User-Agent' => 'TestAgent/1.0'])
         ->assertOk()
         ->assertHeader('Content-Type', 'application/javascript')
         ->assertSee('window.pennymetrics', false);
 
-    $this->get('/pm/i.gif?d=abc123')
+    Http::assertSent(fn ($request) => $request->url() === 'https://pennymetrics.dev/stats.js'
+        && $request->hasHeader('X-PM-Client-IP'));
+
+    $this->get('/pm/i.gif?d=abc123', [
+        'User-Agent' => 'TestAgent/1.0',
+        'CF-Connecting-IP' => '203.0.113.42',
+    ])
         ->assertOk()
         ->assertHeader('Content-Type', 'image/gif')
         ->assertSee('GIF89a', false);
+
+    Http::assertSent(fn ($request) => str_starts_with($request->url(), 'https://pennymetrics.dev/api/i.gif')
+        && in_array('203.0.113.42', $request->header('X-PM-Client-IP'), true));
 });
