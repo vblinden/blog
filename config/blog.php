@@ -24,6 +24,11 @@ return [
             'description' => 'Crawl your website, upload PDFs and custom text, and turn it into a chatbot that answers visitors with grounded responses. The same indexed content is available through an agent-ready search API for custom bots and copilots, with built-in chat insights to track top questions, satisfaction, and content gaps.',
         ],
         [
+            'name' => 'moyouai.com',
+            'url' => 'https://moyouai.com',
+            'description' => 'An AI-powered SVG logo generator where you describe your brand and watch real vector logos stream in. Pick a favorite, refine colors, text, or symbols with a prompt, and download production-ready SVG and PNG files with a full commercial license — pay-as-you-go tokens, no subscription.',
+        ],
+        [
             'name' => 'goutipedia.com',
             'url' => 'https://goutipedia.com',
             'description' => 'An encyclopedia and knowledge base about gout — symptoms, triggers, treatments, and practical advice for managing it. Written for patients and caregivers who want clear guidance on flares, diet, medication, and day-to-day management without wading through outdated forum posts.',
