@@ -198,6 +198,12 @@ a:hover {
     @apply mt-12 pt-8;
 }
 
+.site-footer {
+    @apply border-t pt-8 text-sm leading-7;
+    border-color: var(--color-rule);
+    color: var(--color-muted);
+}
+
 .markdown {
     @apply mt-10 text-[1.05rem] leading-8;
 }

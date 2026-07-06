@@ -8,6 +8,8 @@ it('shows blog posts on the homepage', function () {
     $response->assertOk();
     $response->assertSee('Simplicity is a feature');
     $response->assertSee('Projects.');
+    $response->assertSee('support@vblinden.dev');
+    $response->assertSee('https://x.com/vblinden', false);
 });
 
 it('renders a blog post page', function () {

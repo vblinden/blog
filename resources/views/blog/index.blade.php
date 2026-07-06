@@ -65,5 +65,14 @@
                 @endforeach
             </dl>
         </section>
+
+        <footer class="site-footer">
+            <p>
+                Need help with any of my products? Reach me on
+                <a href="https://x.com/vblinden" target="_blank" rel="noreferrer">X</a>
+                or email
+                <a href="mailto:support@vblinden.dev">support@vblinden.dev</a>.
+            </p>
+        </footer>
     </main>
 @endsection
