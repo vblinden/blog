@@ -5,10 +5,10 @@ date: March 9, 2026
 
 A lot of developers I know and work with are constantly building for imaginary what ifs.
 
-- What if we need multiple providers later?  
-- Perhaps we should abstract this now.  
-- In the future we might need a queue here.  
-- Maybe this should support five different use cases.  
+- What if we need multiple providers later?
+- Perhaps we should abstract this now.
+- In the future we might need a queue here.
+- Maybe this should support five different use cases.
 - What if the product grows into something bigger?
 
 And before you know it, a simple feature turns into a small framework. Not because the current problem asked for it, but because our brains like to run ahead of reality.
@@ -25,7 +25,7 @@ So now you are left with extra code, extra concepts, extra configuration, and ex
 
 This is why simplicity matters so much.
 
-Simple software is easier to explain, debug, change, and delete.  
+Simple software is easier to explain, debug, change, and delete.
 
 That does not mean you should be naive. Of course you should think a little ahead. Of course you should avoid painting yourself into a corner. Of course some systems need careful design because the cost of changing them later is high.
 
@@ -57,18 +57,18 @@ So the next time you catch yourself saying:
 
 Pause.
 
-- Do we need it today?  
-- Is there actual evidence this is coming?  
-- What is the cost of waiting until the requirement is real?  
+- Do we need it today?
+- Is there actual evidence this is coming?
+- What is the cost of waiting until the requirement is real?
 - What complexity are we adding right now in exchange for that guess?
 
 A lot of the time, the right move is to do less.
 
-- Build the straightforward version.  
-- Name things clearly.  
-- Avoid premature abstractions.  
-- Let duplication exist for a while.  
-- Wait for the real pattern to show up.  
+- Build the straightforward version.
+- Name things clearly.
+- Avoid premature abstractions.
+- Let duplication exist for a while.
+- Wait for the real pattern to show up.
 - Make the current use case work really well.
 
 Then adjust when reality forces your hand. That is usually how good software gets built. Not by trying to predict everything. But by staying close to the problem, keeping things simple, and changing the design only when the need becomes real.

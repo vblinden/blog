@@ -7,15 +7,15 @@ If you are creating a web application, you have to deploy it at some point. Most
 
 These services are great and work really well, however they can really add up in cost when you want to scale up an application or have multiple little applications running.
 
-This is why I recently purchased a Virtual Private Server (VPS), they are a lot cheaper (cheap as in $2.50 a month!) than the providers mentioned above. This is of course if you are not taking in account that these providers also offer a free tier for some of their services (mostly you can have one single application at most though).
+This is why I recently purchased a Virtual Private Server (VPS). They are a lot cheaper (as in $2.50 a month!) than the providers mentioned above. This is of course if you are not taking into account that these providers also offer a free tier for some of their services (mostly you can have one single application at most though).
 
 The only downside to this is that you have to manage the server yourself and that can be a real hassle if you don't have much experience and knowledge about managing a server. Luckily there are a lot of tutorials for <a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-20-04" target="_blank">initial server setup</a> out there which you can follow. Don't forget to install the `unattended-upgrades` package (if you are using Ubuntu), enable a firewall and you will be fine (I am <strong>not</strong> an expert on server management or security, so please don't quote me on this).
 
-Anyway, the real pain is to manage and install every single application and it's dependencies. For example: when you are hosting a PHP application with Nginx as the webserver you have to install PHP, Composer (for package management), Nginx and PHP-FPM. If you have some front-end dependencies like Vue.js with Webpack you also have to install Node.js and maintain those packages.
+Anyway, the real pain is to manage and install every single application and its dependencies. For example: when you are hosting a PHP application with Nginx as the webserver you have to install PHP, Composer (for package management), Nginx and PHP-FPM. If you have some front-end dependencies like Vue.js with Webpack you also have to install Node.js and maintain those packages.
 
-Luckily for me (and you), we have <a href="https://www.docker.com/" target="_blank">Docker</a> these days which makes it much easier to manage all these stuff because each application will have it's own `Dockerfile` or `docker-compose.yml` file which will handle everything that is needed to run the application correctly. This is a much better approach already, except now we aren't managing dependencies directly but we are managing containers. Worrying about what will happen when a container will fall over, will it restart correctly, what happens if my database container fails, etc.
+Luckily for me (and you), we have <a href="https://www.docker.com/" target="_blank">Docker</a> these days which makes it much easier to manage all this stuff because each application will have its own `Dockerfile` or `docker-compose.yml` file which will handle everything that is needed to run the application correctly. This is a much better approach already, except now we aren't managing dependencies directly but we are managing containers. Worrying about what will happen when a container will fall over, will it restart correctly, what happens if my database container fails, etc.
 
-This is where <a href="https://github.com/dokku/dokku" target="_blank">Dokku</a> gets in the picture. Dokku describes itself as "a Docker powered mini-Heroku", and it really is as easy to use as Heroku. It will take care of all server related stuff, like managing dependencies, using SSL with Let's Encrypt, redirects of domains etc. But at the same time it will allow us to define our own `Dockerfile` which will give us more room to customize the way our application is handled by Dokku.
+This is where <a href="https://github.com/dokku/dokku" target="_blank">Dokku</a> enters the picture. Dokku describes itself as "a Docker powered mini-Heroku", and it really is as easy to use as Heroku. It will take care of all server related stuff, like managing dependencies, using SSL with Let's Encrypt, redirects of domains etc. But at the same time it will allow us to define our own `Dockerfile` which will give us more room to customize the way our application is handled by Dokku.
 
 I always use the following commands to get Dokku up and running with an application using the <a href="https://github.com/dokku/dokku/blob/master/docs/deployment/methods/buildpacks.md" target="_blank">Buildpacks</a> that Dokku supports at the moment.
 
@@ -29,7 +29,7 @@ dokku domains:add appname example.com
 dokku domains:add appname www.example.com
 ```
 
-You application should now be reachable at `example.com` and `www.example.com` if you have updated your DNS records correctly. Next thing we need to tell Dokku to use SSL. Dokku doesn't support Let's Encrypt certificates out of the box, so we need to install a <a href="https://github.com/dokku/dokku-letsencrypt" target="_blank">plugin</a> for it. Execute the following commands on your server.
+Your application should now be reachable at `example.com` and `www.example.com` if you have updated your DNS records correctly. Next thing we need to tell Dokku to use SSL. Dokku doesn't support Let's Encrypt certificates out of the box, so we need to install a <a href="https://github.com/dokku/dokku-letsencrypt" target="_blank">plugin</a> for it. Execute the following commands on your server.
 
 ```bash
 # Install the plugin:
@@ -42,7 +42,7 @@ dokku config:set --global DOKKU_LETSENCRYPT_EMAIL={your-email}
 dokku letsencrypt appname
 ```
 
-Congratulations your application now uses SSL certificates from Let's Encrypt. The last thing we need to do is to tell Dokku that we want the redirect the `example.com` domain to the `www.example.com` domain, so we don't have double content on the internet. We also have to install a <a href="https://github.com/dokku/dokku-redirect" target="_blank">plugin</a> to make it work.
+Congratulations, your application now uses SSL certificates from Let's Encrypt. The last thing we need to do is to tell Dokku that we want to redirect the `example.com` domain to the `www.example.com` domain, so we don't have duplicate content on the internet. We also have to install a <a href="https://github.com/dokku/dokku-redirect" target="_blank">plugin</a> to make it work.
 
 ```bash
 # Install the plugin:

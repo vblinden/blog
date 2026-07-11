@@ -11,11 +11,11 @@ file.
 When this setting is enabled, set to `On`, for projects that aren't expecting it, it can lead to decoding
 issues, resulting in the `net::ERR_CONTENT_DECODING_FAILED` error in your browser.
 
-The solution is very easy, you just have to change one setting in your php.ini.
+The solution is very easy: you just have to change one setting in your php.ini.
 
 ```bash
-#zlib.output_compression = Off
-zlib.output_compression = On
+#zlib.output_compression = On
+zlib.output_compression = Off
 ```
 
 Restart your PHP processes and you are good to go!

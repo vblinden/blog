@@ -1,6 +1,6 @@
 ---
 title: How to install AMQP on macOS
-date: October 2, 2020 
+date: October 2, 2020
 ---
 
 I recently wanted to install the AMQP extension for PHP version 7.4, but ran into some issues on macOS.
@@ -37,4 +37,4 @@ You should also manually export the `PKG_CONFIG_PATH` because Homebrew fails to 
 export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/Cellar/rabbitmq-c/0.10.0/lib/pkgconfig"
 ```
 
-Now run the two commands again and it should work. I hope this helps anybody who also is running into this issue.
+Now run the two commands again and it should work. I hope this helps anybody who is also running into this issue.

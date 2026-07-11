@@ -1,6 +1,6 @@
 ---
 title: Retrieve submodules with Git
-date: Augustus 29, 2019 
+date: August 29, 2019
 ---
 
 Yesterday I had a really hard time with pulling in a submodule from an
@@ -10,9 +10,9 @@ had installed on my computer (or maybe I just applied it incorrectly).
 
 Finally I found an
 <a href="https://stackoverflow.com/a/44692935" target="_blank">answer</a>
- on StackOverflow that didn't quite work, but send me in the right
+ on StackOverflow that didn't quite work, but sent me in the right
 direction. Eventually I gave up the DuckDuckGoing and did what I
-should have done in the first place: Look at the
+should have done in the first place: look at the
 <a href="https://git-scm.com/docs/git-submodule" target="_blank">Git documentation</a>
  for the submodule command.
 

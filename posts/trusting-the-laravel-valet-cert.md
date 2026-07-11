@@ -4,7 +4,7 @@ date: August 16, 2024
 ---
 
 Sometimes your PHP processes will not trust the Laravel Valet certificate when communicating between sites. This
-can be fixed by adding the certificate to the list of trusted certificates in your locally Homebrew
+can be fixed by adding the certificate to the list of trusted certificates in your local Homebrew
 `cacert.pem` file (which is then being used by OpenSSL). Btw, these instructions are for macOS,
 but I think it should be similar for other operating systems.
 
@@ -14,7 +14,7 @@ First get the Laravel Valet certificate.
 cat ~/.config/valet/CA/LaravelValetCASelfSigned.pem | pbcopy
 ```
 
-Then add it to the bottom of the locally Homebrew cert (which is being used by OpenSSL).
+Then add it to the bottom of the local Homebrew cert (which is being used by OpenSSL).
 
 ```bash
 vim /opt/homebrew/etc/ca-certificates/cert.pem
