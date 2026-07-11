@@ -7,17 +7,39 @@ it('shows blog posts on the homepage', function () {
 
     $response->assertOk();
     $response->assertSee('Simplicity is a feature');
+    $response->assertSee('Undesign it');
+    $response->assertSee('July 11, 2026');
+    $response->assertSee('min read');
     $response->assertSee('Projects.');
     $response->assertSee('support@vblinden.dev');
     $response->assertSee('https://x.com/vblinden', false);
+    $response->assertSee('application/atom+xml', false);
+    $response->assertSee('application/ld+json', false);
+    $response->assertSee('Skip to content');
 });
 
-it('renders a blog post page', function () {
+it('uses a single page heading hierarchy on posts', function () {
+    $response = $this->get('/posts/undesign-it');
+
+    $response->assertOk();
+    $response->assertSee('<h1 class="article-title">Undesign it</h1>', false);
+    $response->assertDontSee('<h1 class="site-title">', false);
+    $response->assertSee('<p class="site-title">', false);
+});
+
+it('renders a blog post page with adjacent navigation', function () {
     $response = $this->get('/posts/simplicity-is-a-feature');
 
     $response->assertOk();
     $response->assertSee('Simplicity is a feature');
     $response->assertSee('A lot of developers I know and work with are constantly building for imaginary what ifs.');
+    $response->assertSee('Post navigation');
+    $response->assertSee('Older');
+    $response->assertSee('Newer');
+    $response->assertSee('rel="prev"', false);
+    $response->assertSee('rel="next"', false);
+    $response->assertSee('BreadcrumbList', false);
+    $response->assertSee('article:published_time', false);
 });
 
 it('renders embedded iframes in blog posts', function () {
@@ -41,16 +63,25 @@ it('returns a 404 for missing blog posts', function () {
     $this->get('/posts/does-not-exist')->assertNotFound();
 });
 
-it('exposes sitemap and robots endpoints', function () {
+it('exposes sitemap robots and atom feed endpoints', function () {
     $this->get('/sitemap.xml')
         ->assertOk()
-        ->assertHeader('Content-Type', 'application/xml')
-        ->assertSee('/posts/simplicity-is-a-feature', false);
+        ->assertHeader('Content-Type', 'application/xml; charset=UTF-8')
+        ->assertSee('/posts/simplicity-is-a-feature', false)
+        ->assertSee('/feed', false);
 
     $this->get('/robots.txt')
         ->assertOk()
         ->assertHeader('Content-Type', 'text/plain; charset=UTF-8')
-        ->assertSee('Sitemap:', false);
+        ->assertSee('Sitemap:', false)
+        ->assertDontSee('Host:', false);
+
+    $this->get('/feed')
+        ->assertOk()
+        ->assertHeader('Content-Type', 'application/atom+xml; charset=UTF-8')
+        ->assertSee('<feed xmlns="http://www.w3.org/2005/Atom">', false)
+        ->assertSee('Undesign it')
+        ->assertSee('/posts/undesign-it', false);
 });
 
 it('proxies penny metrics assets', function () {

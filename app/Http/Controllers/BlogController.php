@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Support\Blog\PostRepository;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Response;
 
 class BlogController extends Controller
 {
@@ -19,6 +20,7 @@ class BlogController extends Controller
             'pageTitle' => config('blog.site_title'),
             'pageDescription' => config('blog.home_description'),
             'canonicalUrl' => url('/'),
+            'useSiteTitleHeading' => true,
         ]);
     }
 
@@ -28,11 +30,28 @@ class BlogController extends Controller
 
         abort_if($post === null, 404);
 
+        $adjacent = $this->posts->adjacent($slug);
+
         return view('blog.post', [
             'post' => $post,
+            'newerPost' => $adjacent['newer'],
+            'olderPost' => $adjacent['older'],
             'pageTitle' => "{$post->title} - ".config('blog.site_title'),
             'pageDescription' => $post->description,
             'canonicalUrl' => $post->url(),
+            'useSiteTitleHeading' => false,
         ]);
+    }
+
+    public function feed(): Response
+    {
+        $posts = $this->posts->all();
+
+        return response()
+            ->view('blog.feed', [
+                'posts' => $posts,
+                'updatedAt' => $posts->first()?->publishedAtIso8601 ?? now()->toAtomString(),
+            ])
+            ->header('Content-Type', 'application/atom+xml; charset=UTF-8');
     }
 }

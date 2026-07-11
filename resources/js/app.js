@@ -1,16 +1,11 @@
 const themeToggle = document.querySelector('[data-theme-toggle]');
-const themeIcon = document.querySelector('[data-theme-icon]');
 
 const applyTheme = (theme) => {
     document.documentElement.classList.toggle('dark', theme === 'dark');
     document.documentElement.dataset.theme = theme;
     localStorage.setItem('theme', theme);
-
-    if (themeIcon) {
-        themeIcon.textContent = theme === 'dark' ? '🌕' : '☀️';
-    }
-
     themeToggle?.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    themeToggle?.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
 };
 
 if (themeToggle) {
@@ -19,7 +14,6 @@ if (themeToggle) {
 
     themeToggle.addEventListener('click', () => {
         const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-
         applyTheme(nextTheme);
     });
 }

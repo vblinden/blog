@@ -98,28 +98,39 @@ a:hover {
     @apply mx-auto max-w-4xl px-5 pb-12 pt-10 sm:px-8;
 }
 
+.skip-link {
+    @apply absolute left-4 top-0 z-50 -translate-y-16 rounded-md px-3 py-2 text-sm font-medium no-underline transition;
+    background: var(--color-ink);
+    color: var(--color-paper);
+}
+
+.skip-link:focus {
+    @apply translate-y-4 outline-none;
+}
+
 .site-header {
     @apply mb-10 flex items-center justify-between gap-4;
 }
 
 .site-title {
-    @apply text-4xl font-semibold tracking-tight;
+    @apply m-0 text-4xl font-semibold tracking-tight;
     color: var(--color-accent);
     font-family: var(--font-serif);
 }
 
 .site-title-link {
     color: var(--color-accent);
-    text-decoration: underline;
-    text-underline-offset: 0.18em;
+    text-decoration: none;
 }
 
 .site-title-link:hover {
     color: var(--color-accent-strong);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
 }
 
 .theme-toggle {
-    @apply inline-flex cursor-pointer items-center justify-center rounded-full border px-3 py-1.5 text-sm font-medium no-underline transition;
+    @apply relative inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border p-0 no-underline transition;
     border-color: var(--color-rule);
     background: var(--color-surface);
     color: var(--color-ink);
@@ -137,7 +148,21 @@ a:hover {
 }
 
 .theme-toggle-icon {
-    @apply block text-base leading-none;
+    @apply absolute inset-0 m-auto block h-5 w-5;
+}
+
+.theme-toggle-icon svg {
+    @apply h-full w-full;
+}
+
+html.dark .theme-toggle-icon-moon,
+html:not(.dark) .theme-toggle-icon-sun {
+    @apply hidden;
+}
+
+html.dark .theme-toggle-icon-sun,
+html:not(.dark) .theme-toggle-icon-moon {
+    @apply block;
 }
 
 .content-stack {
@@ -158,20 +183,52 @@ a:hover {
     @apply text-base leading-7;
 }
 
+.intro-disclaimer {
+    @apply mt-3 text-sm leading-6;
+    color: var(--color-muted);
+}
+
 .post-list {
-    @apply space-y-1 leading-7;
+    @apply m-0 list-none space-y-4 p-0;
 }
 
-.post-list a {
-    @apply text-base;
+.post-list-item {
+    @apply max-w-3xl;
 }
 
-.project-list dt {
-    @apply mt-4 text-base font-medium;
+.post-list-link {
+    @apply text-base font-medium no-underline;
 }
 
-.project-list dd {
-    @apply mt-1 leading-7;
+.post-list-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+}
+
+.post-list-meta {
+    @apply mt-1 flex flex-wrap items-center gap-x-2 text-sm leading-6;
+    color: var(--color-muted);
+}
+
+.project-list {
+    @apply m-0 list-none space-y-4 p-0;
+}
+
+.project-list-item {
+    @apply max-w-3xl;
+}
+
+.project-list-link {
+    @apply text-base font-medium no-underline;
+}
+
+.project-list-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+}
+
+.project-list-description {
+    @apply mt-1 max-w-2xl text-sm leading-6;
     color: var(--color-muted);
 }
 
@@ -194,14 +251,45 @@ a:hover {
     color: var(--color-muted);
 }
 
+.article-nav {
+    @apply mt-12 grid gap-6 border-t pt-8 sm:grid-cols-2;
+    border-color: var(--color-rule);
+}
+
+.article-nav-item {
+    @apply flex min-w-0 flex-col gap-1;
+}
+
+.article-nav-item-end {
+    @apply sm:items-end sm:text-right;
+}
+
+.article-nav-label {
+    @apply text-xs font-medium uppercase tracking-wide;
+    color: var(--color-muted);
+}
+
+.article-nav a {
+    @apply text-base font-medium leading-6 no-underline;
+}
+
+.article-nav a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+}
+
 .article-footer {
-    @apply mt-12 pt-8;
+    @apply mt-8 pt-2;
 }
 
 .site-footer {
     @apply border-t pt-8 text-sm leading-7;
     border-color: var(--color-rule);
     color: var(--color-muted);
+}
+
+.site-footer-meta {
+    @apply mt-3;
 }
 
 .markdown {

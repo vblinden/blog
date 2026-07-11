@@ -23,6 +23,24 @@ class PostRepository
         return $this->parsePostFile("{$slug}.md");
     }
 
+    /**
+     * @return array{newer: ?Post, older: ?Post}
+     */
+    public function adjacent(string $slug): array
+    {
+        $posts = $this->all();
+        $index = $posts->search(fn (Post $post) => $post->slug === $slug);
+
+        if ($index === false) {
+            return ['newer' => null, 'older' => null];
+        }
+
+        return [
+            'newer' => $index > 0 ? $posts->get($index - 1) : null,
+            'older' => $posts->get($index + 1),
+        ];
+    }
+
     public function slugs(): Collection
     {
         return $this->all()->pluck('slug');
