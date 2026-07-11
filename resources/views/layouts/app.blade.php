@@ -16,8 +16,8 @@
         <meta property="og:description" content="{{ $pageDescription ?? config('blog.home_description') }}">
         <meta property="og:url" content="{{ $canonicalUrl ?? url('/') }}">
         <meta name="twitter:card" content="summary">
-        <meta name="twitter:site" content="@{{ config('blog.author_handle', 'vblinden') }}">
-        <meta name="twitter:creator" content="@{{ config('blog.author_handle', 'vblinden') }}">
+        <meta name="twitter:site" content="{{ '@'.config('blog.author_handle', 'vblinden') }}">
+        <meta name="twitter:creator" content="{{ '@'.config('blog.author_handle', 'vblinden') }}">
         <meta name="twitter:title" content="{{ $pageTitle ?? config('blog.site_title') }}">
         <meta name="twitter:description" content="{{ $pageDescription ?? config('blog.home_description') }}">
         <link rel="canonical" href="{{ $canonicalUrl ?? url('/') }}">

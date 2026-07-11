@@ -71,7 +71,7 @@
         <section class="intro">
             <p class="lede">
                 Hey friends, my name is Vincent van der Linden and you can find me online as
-                <a href="{{ $social['github'] ?? 'https://github.com/vblinden' }}" target="_blank" rel="noreferrer">@{{ config('blog.author_handle') }}</a>.
+                <a href="{{ $social['github'] ?? 'https://github.com/vblinden' }}" target="_blank" rel="noreferrer">{{ '@'.config('blog.author_handle') }}</a>.
                 I am currently working at
                 <a href="https://team.blue" target="_blank" rel="noreferrer">team.blue</a>
                 as a senior software engineer. This is my little corner of the web for stuff I've found important,

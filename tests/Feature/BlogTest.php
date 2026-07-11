@@ -11,6 +11,8 @@ it('shows blog posts on the homepage', function () {
     $response->assertSee('July 11, 2026');
     $response->assertSee('min read');
     $response->assertSee('Projects.');
+    $response->assertSee('@vblinden');
+    $response->assertDontSee('@{{ config', false);
     $response->assertSee('support@vblinden.dev');
     $response->assertSee('https://x.com/vblinden', false);
     $response->assertSee('application/atom+xml', false);
