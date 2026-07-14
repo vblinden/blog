@@ -54,7 +54,7 @@ Not everything in the documentary is urgent. Buoys get patched. Imaging satellit
 
 Software teams have float too. Documentation can slip. Internal tooling can wait. A nice-to-have admin screen can land next sprint.
 
-The demo looks great in a recorded walkthrough. The critical path is whether it works on Tuesday at 2 p.m. when the data is messy and the user is impatient.
+The demo looks great in a recorded walkthrough. The critical path is whether it works on Tuesday at 14:00 when the data is messy and the user is impatient.
 
 ## "Critical path to Mars is not blowing up rockets"
 
