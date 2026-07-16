@@ -9,6 +9,14 @@
         <priority>1.0</priority>
     </url>
     <url>
+        <loc>{{ route('posts') }}</loc>
+        @if ($posts->first()?->publishedAtIso8601)
+            <lastmod>{{ $posts->first()->publishedAtIso8601 }}</lastmod>
+        @endif
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
         <loc>{{ route('feed') }}</loc>
         <changefreq>weekly</changefreq>
         <priority>0.3</priority>

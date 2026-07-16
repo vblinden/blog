@@ -14,13 +14,32 @@ class BlogController extends Controller
 
     public function index(): View
     {
+        $tracking = config('blog.project_tracking', []);
+
+        $projects = collect(config('blog.projects', []))->map(function (array $project) use ($tracking) {
+            if ($tracking !== []) {
+                $project['url'] .= (str_contains($project['url'], '?') ? '&' : '?').http_build_query($tracking);
+            }
+
+            return $project;
+        })->all();
+
         return view('blog.index', [
             'posts' => $this->posts->all(),
-            'projects' => config('blog.projects', []),
+            'projects' => $projects,
             'pageTitle' => config('blog.site_title'),
             'pageDescription' => config('blog.home_description'),
             'canonicalUrl' => url('/'),
-            'useSiteTitleHeading' => true,
+        ]);
+    }
+
+    public function posts(): View
+    {
+        return view('blog.posts', [
+            'posts' => $this->posts->all(),
+            'pageTitle' => 'Posts - '.config('blog.site_title'),
+            'pageDescription' => 'Posts by '.config('blog.author').' on software engineering, side projects, and practical lessons.',
+            'canonicalUrl' => route('posts'),
         ]);
     }
 
@@ -39,7 +58,6 @@ class BlogController extends Controller
             'pageTitle' => "{$post->title} - ".config('blog.site_title'),
             'pageDescription' => $post->description,
             'canonicalUrl' => $post->url(),
-            'useSiteTitleHeading' => false,
         ]);
     }
 

@@ -14,6 +14,11 @@ return [
         'x' => 'https://x.com/vblinden',
         'email' => 'support@vblinden.dev',
     ],
+    'project_tracking' => [
+        'utm_source' => 'vblinden.dev',
+        'utm_medium' => 'referral',
+        'utm_campaign' => 'homepage',
+    ],
     'projects' => [
         [
             'name' => 'mailsurge.dev',
@@ -34,6 +39,11 @@ return [
             'name' => 'moyouai.com',
             'url' => 'https://moyouai.com',
             'description' => 'Describe a brand and generate production-ready SVG logos.',
+        ],
+        [
+            'name' => 'absurge.com',
+            'url' => 'https://absurge.com',
+            'description' => '',
         ],
         [
             'name' => 'goutipedia.com',

@@ -85,12 +85,14 @@
 @section('content')
     <article class="article">
         <header class="article-header">
-            @if ($post->date !== '')
-                <time class="article-date" datetime="{{ $post->publishedAtIso8601 }}">{{ $post->date }}</time>
-            @endif
-
             <h1 class="article-title">{{ $post->title }}</h1>
-            <p class="article-meta">{{ $post->readingTime }} min read</p>
+            <p class="article-meta">
+                @if ($post->date !== '')
+                    <time class="article-date" datetime="{{ $post->publishedAtIso8601 }}">{{ $post->date }}</time>
+                    <span aria-hidden="true">—</span>
+                @endif
+                <span>{{ $post->readingTime }} min read</span>
+            </p>
         </header>
 
         <div class="markdown">
@@ -113,7 +115,7 @@
         </nav>
 
         <footer class="article-footer">
-            <a href="{{ route('home') }}">Back to home</a>
+            <a href="{{ route('posts') }}">All posts</a>
         </footer>
     </article>
 @endsection

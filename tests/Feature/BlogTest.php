@@ -6,11 +6,15 @@ it('shows blog posts on the homepage', function () {
     $response = $this->get('/');
 
     $response->assertOk();
+    $response->assertSee('<h1 class="page-title">vblinden</h1>', false);
     $response->assertSee('Simplicity is a feature');
     $response->assertSee('Undesign it');
-    $response->assertSee('July 11, 2026');
-    $response->assertSee('min read');
-    $response->assertSee('Projects.');
+    $response->assertSee('Latest posts:');
+    $response->assertSee('read my posts');
+    $response->assertSee('mailsurge.dev');
+    $response->assertSee('utm_source=vblinden.dev', false);
+    $response->assertSee('utm_medium=referral', false);
+    $response->assertSee('utm_campaign=homepage', false);
     $response->assertSee('@vblinden');
     $response->assertDontSee('@{{ config', false);
     $response->assertSee('support@vblinden.dev');
@@ -20,13 +24,30 @@ it('shows blog posts on the homepage', function () {
     $response->assertSee('Skip to content');
 });
 
+it('lists all posts on the posts page', function () {
+    $response = $this->get('/posts');
+
+    $response->assertOk();
+    $response->assertSee('<h1 class="page-title">Posts</h1>', false);
+    $response->assertDontSee('By vblinden');
+    $response->assertDontSee('Here’s a list of my posts');
+    $response->assertSee('Simplicity is a feature');
+    $response->assertSee('Undesign it');
+    $response->assertSee('The Critical Path');
+});
+
+it('redirects the old writing url to posts', function () {
+    $this->get('/writing')->assertRedirect('/posts');
+});
+
 it('uses a single page heading hierarchy on posts', function () {
     $response = $this->get('/posts/undesign-it');
 
     $response->assertOk();
     $response->assertSee('<h1 class="article-title">Undesign it</h1>', false);
+    $response->assertDontSee('By vblinden');
+    $response->assertDontSee('<h1 class="page-title">', false);
     $response->assertDontSee('<h1 class="site-title">', false);
-    $response->assertSee('<p class="site-title">', false);
 });
 
 it('renders a blog post page with adjacent navigation', function () {
@@ -70,6 +91,7 @@ it('exposes sitemap robots and atom feed endpoints', function () {
         ->assertOk()
         ->assertHeader('Content-Type', 'application/xml; charset=UTF-8')
         ->assertSee('/posts/simplicity-is-a-feature', false)
+        ->assertSee('/posts', false)
         ->assertSee('/feed', false);
 
     $this->get('/robots.txt')

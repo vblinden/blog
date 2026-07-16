@@ -7,6 +7,8 @@
         $social['x'] ?? null,
     ]));
 
+    $favorites = $posts->take(6);
+
     $jsonLd = [
         [
             '@context' => 'https://schema.org',
@@ -67,63 +69,50 @@
 @endpush
 
 @section('content')
-    <main class="content-stack">
-        <section class="intro">
-            <p class="lede">
-                Hey friends, my name is Vincent van der Linden and you can find me online as
-                <a href="{{ $social['github'] ?? 'https://github.com/vblinden' }}" target="_blank" rel="noreferrer">{{ '@'.config('blog.author_handle') }}</a>.
-                I am currently working at
-                <a href="https://team.blue" target="_blank" rel="noreferrer">team.blue</a>
-                as a senior software engineer. This is my little corner of the web for stuff I've found important,
-                handy, or just wanted to save. Hope you find something interesting!
+    <main>
+        <h1 class="page-title">{{ config('blog.site_name') }}</h1>
+
+        <div class="prose-block">
+            <p>
+                I work as a software engineer at
+                <a href="https://team.blue" target="_blank" rel="noreferrer">team.blue</a>.
+                Online you can find me as
+                <a href="{{ $social['github'] ?? 'https://github.com/vblinden' }}" target="_blank" rel="noreferrer">{{ '@'.config('blog.author_handle') }}</a>
+                on GitHub and elsewhere.
+                This is my little corner of the web for stuff I’ve found important, handy, or just wanted to write down and save.
             </p>
-            <p class="intro-disclaimer">
+
+            <p class="prose-note">
                 Opinions here are my own and do not represent my employer.
             </p>
-        </section>
 
-        <section aria-labelledby="posts-heading">
-            <h2 id="posts-heading" class="section-title">Posts.</h2>
+            <p class="latest-posts-label">Latest posts:</p>
 
-            <ul class="post-list">
-                @foreach ($posts as $post)
-                    <li class="post-list-item">
-                        <a class="post-list-link" href="{{ $post->url() }}">{{ $post->title }}</a>
-                        <p class="post-list-meta">
-                            @if ($post->date !== '')
-                                <time datetime="{{ $post->publishedAtIso8601 }}">{{ $post->date }}</time>
-                                <span aria-hidden="true">·</span>
-                            @endif
-                            <span>{{ $post->readingTime }} min read</span>
-                        </p>
+            <ul class="link-list">
+                @foreach ($favorites as $post)
+                    <li>
+                        <a href="{{ $post->url() }}">{{ $post->title }}</a>
                     </li>
                 @endforeach
             </ul>
-        </section>
 
-        <section aria-labelledby="projects-heading">
-            <h2 id="projects-heading" class="section-title">Projects.</h2>
-
-            <ul class="project-list">
-                @foreach ($projects as $project)
-                    <li class="project-list-item">
-                        <a class="project-list-link" href="{{ $project['url'] }}" target="_blank" rel="noreferrer">{{ $project['name'] }}</a>
-                        <p class="project-list-description">{{ $project['description'] }}</p>
-                    </li>
-                @endforeach
-            </ul>
-        </section>
-
-        <footer class="site-footer">
             <p>
-                Need help with any of my products? Reach me on
-                <a href="{{ $social['x'] ?? 'https://x.com/vblinden' }}" target="_blank" rel="noreferrer">X</a>
-                or email
-                <a href="mailto:{{ $social['email'] ?? 'support@vblinden.dev' }}">{{ $social['email'] ?? 'support@vblinden.dev' }}</a>.
+                I’ve also built
+                @foreach ($projects as $index => $project)<a href="{{ $project['url'] }}" target="_blank" rel="noreferrer">{{ $project['name'] }}</a>{{ $index === count($projects) - 1 ? '.' : ($index === count($projects) - 2 ? ', and ' : ', ') }}@endforeach
             </p>
-            <p class="site-footer-meta">
-                <a href="{{ route('feed') }}">RSS feed</a>
+
+            <p>
+                You can
+                <a href="{{ route('posts') }}">read my posts</a>
+                or
+                <a href="{{ $social['github'] ?? 'https://github.com/vblinden' }}" target="_blank" rel="noreferrer">code</a>,
+                or follow me on
+                <a href="{{ $social['x'] ?? 'https://x.com/vblinden' }}" target="_blank" rel="noreferrer">X</a>.
+                Need help with any of my products? Reach out via
+                <a href="mailto:{{ $social['email'] ?? 'support@vblinden.dev' }}">{{ $social['email'] ?? 'support@vblinden.dev' }}</a>
+                or the
+                <a href="{{ route('feed') }}">RSS feed</a>.
             </p>
-        </footer>
+        </div>
     </main>
 @endsection

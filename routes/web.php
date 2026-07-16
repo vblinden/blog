@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [BlogController::class, 'index'])->name('home');
+Route::get('/posts', [BlogController::class, 'posts'])->name('posts');
+Route::redirect('/writing', '/posts', 301);
 Route::get('/posts/{slug}', [BlogController::class, 'show'])->name('posts.show');
 Route::get('/feed', [BlogController::class, 'feed'])->name('feed');
 Route::get('/feed.xml', [BlogController::class, 'feed'])->name('feed.xml');
