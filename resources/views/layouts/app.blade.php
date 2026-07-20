@@ -28,7 +28,7 @@
         <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
         <link href="https://fonts.bunny.net/css?family=stix-two-text:400,500,600,700,400i,700i&display=swap" rel="stylesheet">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <script defer src="/pm/stats.js" data-hostname="vblinden.dev" data-endpoint="/pm/i.gif"></script>
+        <script defer src="/pm/stats.js" data-hostname="vblinden.dev" data-endpoint="/pm/i.gif" data-collect="/pm/api/collect"></script>
         @stack('head')
     </head>
     <body>

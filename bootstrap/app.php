@@ -15,6 +15,11 @@ return Application::configure(basePath: dirname(__DIR__))
         // Trust forwarded headers so URL generation, HTTPS detection, and
         // client IPs stay correct behind the edge.
         $middleware->trustProxies(at: '*');
+
+        // PennyMetrics sendBeacon has no CSRF token.
+        $middleware->validateCsrfTokens(except: [
+            'pm/api/collect',
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

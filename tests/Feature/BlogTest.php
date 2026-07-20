@@ -144,6 +144,9 @@ it('proxies penny metrics assets', function () {
         'pennymetrics.dev/api/i.gif*' => Http::response('GIF89a', 200, [
             'Content-Type' => 'image/gif',
         ]),
+        'pennymetrics.dev/api/collect' => Http::response(['ok' => true], 202, [
+            'Content-Type' => 'application/json',
+        ]),
     ]);
 
     $this->get('/pm/stats.js', ['User-Agent' => 'TestAgent/1.0'])
@@ -164,4 +167,29 @@ it('proxies penny metrics assets', function () {
 
     Http::assertSent(fn ($request) => str_starts_with($request->url(), 'https://pennymetrics.dev/api/i.gif')
         && in_array('203.0.113.42', $request->header('X-PM-Client-IP'), true));
+
+    $payload = json_encode([
+        'type' => 'pageview',
+        'hostname' => 'vblinden.dev',
+        'path' => '/',
+    ], JSON_THROW_ON_ERROR);
+
+    $this->call('POST', '/pm/api/collect', content: $payload, server: [
+        'CONTENT_TYPE' => 'text/plain',
+        'HTTP_USER_AGENT' => 'TestAgent/1.0',
+        'HTTP_CF_CONNECTING_IP' => '203.0.113.99',
+    ])
+        ->assertStatus(202)
+        ->assertJson(['ok' => true]);
+
+    Http::assertSent(fn ($request) => $request->url() === 'https://pennymetrics.dev/api/collect'
+        && $request->body() === $payload
+        && in_array('203.0.113.99', $request->header('X-PM-Client-IP'), true));
+});
+
+it('embeds first-party pennymetrics collect and pixel endpoints', function () {
+    $this->get('/')
+        ->assertOk()
+        ->assertSee('data-endpoint="/pm/i.gif"', false)
+        ->assertSee('data-collect="/pm/api/collect"', false);
 });
