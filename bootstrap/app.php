@@ -11,7 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Fizz terminates TLS at Caddy and reverse-proxies to FrankenPHP.
+        // Trust forwarded headers so URL generation, HTTPS detection, and
+        // client IPs stay correct behind the edge.
+        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

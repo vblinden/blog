@@ -1,6 +1,34 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Route;
+
+it('trusts reverse proxy headers from fizz', function () {
+    Route::get('/__trust-proxy-check', function (Request $request) {
+        return response()->json([
+            'ip' => $request->ip(),
+            'secure' => $request->secure(),
+            'scheme' => $request->getScheme(),
+            'host' => $request->getHost(),
+        ]);
+    });
+
+    $this->call('GET', '/__trust-proxy-check', server: [
+        'REMOTE_ADDR' => '127.0.0.1',
+        'HTTP_X_FORWARDED_FOR' => '203.0.113.50',
+        'HTTP_X_FORWARDED_PROTO' => 'https',
+        'HTTP_X_FORWARDED_HOST' => 'vblinden.dev',
+        'HTTP_X_FORWARDED_PORT' => '443',
+    ])
+        ->assertOk()
+        ->assertJson([
+            'ip' => '203.0.113.50',
+            'secure' => true,
+            'scheme' => 'https',
+            'host' => 'vblinden.dev',
+        ]);
+});
 
 it('shows blog posts on the homepage', function () {
     $response = $this->get('/');
