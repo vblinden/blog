@@ -28,11 +28,18 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    name: "hearof.dev",
+    url: "https://hearof.dev",
+    description:
+      "Product changelogs that stay in the loop. Publish once, show a public page, and surface updates in your app with an unread badge.",
+  },
+  {
     name: "usefizz.dev",
     url: "https://usefizz.dev",
     description:
       "Deploy Laravel, Next.js, or static apps to your own VPS with Git push deploys, automatic HTTPS, and easy rollbacks.",
   },
+
   {
     name: "checkeroni.com",
     url: "https://checkeroni.com",
