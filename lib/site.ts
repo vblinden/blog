@@ -59,12 +59,6 @@ export const projects: Project[] = [
       "Quieter error tracking for developers. Fewer dashboards, clearer signals, and less noise when things break.",
   },
   {
-    name: "favicons.vblinden.dev",
-    url: "https://favicons.vblinden.dev",
-    description:
-      "Drop-in favicon URLs for any domain. Cached, easy to refresh, and built for hotlinking.",
-  },
-  {
     name: "pennymetrics.dev",
     url: "https://pennymetrics.dev",
     description:
