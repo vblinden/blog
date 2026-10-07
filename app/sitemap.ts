@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/posts";
 import { absoluteUrl } from "@/lib/site";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const posts = getAllPosts();
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const posts = await getAllPosts();
   const latest = posts[0]?.publishedAtIso8601
     ? new Date(posts[0].publishedAtIso8601)
     : undefined;

@@ -15,6 +15,8 @@ const geistMono = Geist_Mono({
 
 export const metadata = defaultMetadata;
 
+export const ensureStatic = "navigation";
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html

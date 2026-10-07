@@ -4,8 +4,8 @@ import { ClampedDescription } from "@/components/clamped-description";
 import { getAllPosts } from "@/lib/posts";
 import { absoluteUrl, getProjectsForHome, site } from "@/lib/site";
 
-export default function HomePage() {
-  const posts = getAllPosts();
+export default async function HomePage() {
+  const posts = await getAllPosts();
   const latest = posts.slice(0, 5);
   const projectList = getProjectsForHome();
   const sameAs = [site.social.github, site.social.x].filter(Boolean);

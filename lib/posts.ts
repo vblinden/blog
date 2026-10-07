@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import { cacheLife } from "next/cache";
 import { absoluteUrl } from "./site";
 import { renderMarkdown } from "./markdown";
 
@@ -182,7 +183,10 @@ function parsePostFile(
   }));
 }
 
-function buildIndex(): PostMeta[] {
+async function getIndex(): Promise<PostMeta[]> {
+  "use cache";
+  cacheLife("days");
+
   const now = Math.floor(Date.now() / 1000);
 
   return fs
@@ -194,23 +198,15 @@ function buildIndex(): PostMeta[] {
     .sort((a, b) => b.publishedAt - a.publishedAt);
 }
 
-let cachedIndex: PostMeta[] | null = null;
-
-function getIndex(): PostMeta[] {
-  if (cachedIndex && process.env.NODE_ENV === "production") {
-    return cachedIndex;
-  }
-
-  cachedIndex = buildIndex();
-  return cachedIndex;
-}
-
-export function getAllPosts(): PostMeta[] {
+export async function getAllPosts(): Promise<PostMeta[]> {
   return getIndex();
 }
 
 export async function getAllPostsWithContent(): Promise<Post[]> {
-  const posts = getIndex();
+  "use cache";
+  cacheLife("minutes");
+
+  const posts = await getIndex();
   const withContent = await Promise.all(
     posts.map(async (post) => {
       const full = await parsePostFile(`${post.slug}.md`, true);
@@ -222,7 +218,10 @@ export async function getAllPostsWithContent(): Promise<Post[]> {
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
-  const meta = getIndex().find((post) => post.slug === slug);
+  "use cache";
+  cacheLife("days");
+
+  const meta = (await getIndex()).find((post) => post.slug === slug);
   if (!meta) return null;
   return parsePostFile(`${slug}.md`, true);
 }
@@ -232,7 +231,10 @@ export async function getPostWithAdjacent(slug: string): Promise<{
   newer: PostMeta | null;
   older: PostMeta | null;
 }> {
-  const posts = getIndex();
+  "use cache";
+  cacheLife("days");
+
+  const posts = await getIndex();
   const index = posts.findIndex((post) => post.slug === slug);
 
   if (index === -1) {
@@ -248,8 +250,8 @@ export async function getPostWithAdjacent(slug: string): Promise<{
   };
 }
 
-export function getPostSlugs(): string[] {
-  return getAllPosts().map((post) => post.slug);
+export async function getPostSlugs(): Promise<string[]> {
+  return (await getAllPosts()).map((post) => post.slug);
 }
 
 export function postUrl(slug: string): string {

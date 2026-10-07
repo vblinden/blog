@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function PostsPage() {
-  const posts = getAllPosts();
+export default async function PostsPage() {
+  const posts = await getAllPosts();
 
   return (
     <main>

@@ -10,7 +10,8 @@ import {
 import { absoluteUrl, site } from "@/lib/site";
 
 export async function generateStaticParams() {
-  return getPostSlugs().map((slug) => ({ slug }));
+  const slugs = await getPostSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
