@@ -63,6 +63,7 @@ export const projects: Project[] = [
     url: "https://pennymetrics.dev",
     description:
       "Privacy-friendly web analytics without cookies or consent banners. The numbers that matter, nothing else.",
+    status: "sunset",
   },
   {
     name: "chatwithyoursite.com",
