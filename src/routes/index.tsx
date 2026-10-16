@@ -1,13 +1,30 @@
-import Link from "next/link";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { JsonLd } from "@/components/json-ld";
 import { ClampedDescription } from "@/components/clamped-description";
 import { getAllPosts } from "@/lib/posts";
 import { absoluteUrl, getProjectsForHome, site } from "@/lib/site";
+import { pageHead } from "@/lib/head";
 
-export default async function HomePage() {
-  const posts = await getAllPosts();
+export const Route = createFileRoute("/")({
+  loader: async () => {
+    const posts = await getAllPosts();
+    return {
+      posts,
+      projectList: getProjectsForHome(),
+    };
+  },
+  head: () =>
+    pageHead({
+      title: site.title,
+      description: site.description,
+      path: "/",
+    }),
+  component: HomePage,
+});
+
+function HomePage() {
+  const { posts, projectList } = Route.useLoaderData();
   const latest = posts.slice(0, 5);
-  const projectList = getProjectsForHome();
   const sameAs = [site.social.github, site.social.x].filter(Boolean);
   const canonicalUrl = absoluteUrl("/");
 
@@ -93,7 +110,9 @@ export default async function HomePage() {
             {latest.map((post) => (
               <article className="home-item" key={post.slug}>
                 <h3 className="home-item-title">
-                  <Link href={`/posts/${post.slug}`}>{post.title}</Link>
+                  <Link to="/posts/$slug" params={{ slug: post.slug }}>
+                    {post.title}
+                  </Link>
                   {post.date !== "" && (
                     <>
                       <span className="home-item-sep" aria-hidden="true">
@@ -117,7 +136,7 @@ export default async function HomePage() {
           </div>
 
           <p className="home-section-more">
-            <Link href="/posts">Go to all posts</Link>
+            <Link to="/posts">Go to all posts</Link>
           </p>
         </section>
 
@@ -164,7 +183,7 @@ export default async function HomePage() {
 
         <footer className="home-footer">
           <nav className="home-footer-links" aria-label="Elsewhere">
-            <Link href="/posts">Posts</Link>
+            <Link to="/posts">Posts</Link>
             <a href={site.social.github} target="_blank" rel="noreferrer">
               GitHub
             </a>

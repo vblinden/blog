@@ -1,7 +1,4 @@
-import fs from "node:fs";
-import path from "node:path";
 import matter from "gray-matter";
-import { cacheLife } from "next/cache";
 import { absoluteUrl } from "./site";
 import { renderMarkdown } from "./markdown";
 
@@ -20,7 +17,16 @@ export type Post = PostMeta & {
   html: string;
 };
 
-const postsDirectory = path.join(process.cwd(), "posts");
+const postFiles = import.meta.glob("../../posts/*.md", {
+  eager: true,
+  query: "?raw",
+  import: "default",
+}) as Record<string, string>;
+
+function slugFromPath(filePath: string): string {
+  const fileName = filePath.split("/").pop() ?? filePath;
+  return fileName.replace(/\.md$/, "");
+}
 
 function headlineFromSlug(slug: string): string {
   return slug
@@ -67,7 +73,9 @@ function timestampFor(date: string): number {
   if (!date) return 0;
 
   if (/^\d{4}-\d{2}-\d{2}(?:[ T]\d{2}:\d{2}(?::\d{2})?)?/.test(date)) {
-    const timestamp = Date.parse(`${date.includes("T") || date.includes(" ") ? date : `${date}T00:00:00`}Z`);
+    const timestamp = Date.parse(
+      `${date.includes("T") || date.includes(" ") ? date : `${date}T00:00:00`}Z`,
+    );
     return Number.isNaN(timestamp) ? 0 : Math.floor(timestamp / 1000);
   }
 
@@ -121,30 +129,27 @@ function readingTimeFor(content: string): number {
 }
 
 function isPublished(publishedAt: number, now: number): boolean {
-  // Missing/invalid dates still publish (legacy posts).
   if (publishedAt === 0) return true;
   return publishedAt <= now;
 }
 
-function parsePostFile(
-  fileName: string,
+function parsePostContents(
+  slug: string,
+  contents: string,
   includeBody: false,
 ): PostMeta | null;
-function parsePostFile(
-  fileName: string,
+function parsePostContents(
+  slug: string,
+  contents: string,
   includeBody: true,
 ): Promise<Post | null>;
-function parsePostFile(
-  fileName: string,
+function parsePostContents(
+  slug: string,
+  contents: string,
   includeBody: boolean,
 ): PostMeta | null | Promise<Post | null> {
-  const fullPath = path.join(postsDirectory, fileName);
-  if (!fs.existsSync(fullPath)) return includeBody ? Promise.resolve(null) : null;
-
-  const slug = fileName.replace(/\.md$/, "");
   if (slug.startsWith("_")) return includeBody ? Promise.resolve(null) : null;
 
-  const contents = fs.readFileSync(fullPath, "utf8");
   const { data, content: rawMarkdown } = matter(contents);
 
   if (isDraftFrontMatter(data.draft)) {
@@ -152,9 +157,7 @@ function parsePostFile(
   }
 
   const normalizedContent = normalizePostContent(rawMarkdown);
-  const title = normalizeTitle(
-    String(data.title ?? headlineFromSlug(slug)),
-  );
+  const title = normalizeTitle(String(data.title ?? headlineFromSlug(slug)));
   const rawDate = frontMatterDate(data.date);
   const publishedAt = timestampFor(rawDate);
   const date = displayDate(rawDate, publishedAt);
@@ -183,16 +186,20 @@ function parsePostFile(
   }));
 }
 
-async function getIndex(): Promise<PostMeta[]> {
-  "use cache";
-  cacheLife("days");
+function getRawPost(slug: string): string | null {
+  const entry = Object.entries(postFiles).find(
+    ([path]) => slugFromPath(path) === slug,
+  );
+  return entry?.[1] ?? null;
+}
 
+async function getIndex(): Promise<PostMeta[]> {
   const now = Math.floor(Date.now() / 1000);
 
-  return fs
-    .readdirSync(postsDirectory)
-    .filter((file) => file.endsWith(".md"))
-    .map((file) => parsePostFile(file, false))
+  return Object.entries(postFiles)
+    .map(([path, contents]) =>
+      parsePostContents(slugFromPath(path), contents, false),
+    )
     .filter((post): post is PostMeta => post !== null)
     .filter((post) => isPublished(post.publishedAt, now))
     .sort((a, b) => b.publishedAt - a.publishedAt);
@@ -203,14 +210,12 @@ export async function getAllPosts(): Promise<PostMeta[]> {
 }
 
 export async function getAllPostsWithContent(): Promise<Post[]> {
-  "use cache";
-  cacheLife("minutes");
-
   const posts = await getIndex();
   const withContent = await Promise.all(
     posts.map(async (post) => {
-      const full = await parsePostFile(`${post.slug}.md`, true);
-      return full;
+      const raw = getRawPost(post.slug);
+      if (!raw) return null;
+      return parsePostContents(post.slug, raw, true);
     }),
   );
 
@@ -218,12 +223,11 @@ export async function getAllPostsWithContent(): Promise<Post[]> {
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
-  "use cache";
-  cacheLife("days");
-
   const meta = (await getIndex()).find((post) => post.slug === slug);
   if (!meta) return null;
-  return parsePostFile(`${slug}.md`, true);
+  const raw = getRawPost(slug);
+  if (!raw) return null;
+  return parsePostContents(slug, raw, true);
 }
 
 export async function getPostWithAdjacent(slug: string): Promise<{
@@ -231,9 +235,6 @@ export async function getPostWithAdjacent(slug: string): Promise<{
   newer: PostMeta | null;
   older: PostMeta | null;
 }> {
-  "use cache";
-  cacheLife("days");
-
   const posts = await getIndex();
   const index = posts.findIndex((post) => post.slug === slug);
 
@@ -241,7 +242,8 @@ export async function getPostWithAdjacent(slug: string): Promise<{
     return { post: null, newer: null, older: null };
   }
 
-  const post = await parsePostFile(`${slug}.md`, true);
+  const raw = getRawPost(slug);
+  const post = raw ? await parsePostContents(slug, raw, true) : null;
 
   return {
     post,

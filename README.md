@@ -1,12 +1,20 @@
 # vblinden.dev
 
-Personal blog — Next.js port of the previous Laravel site.
+Personal blog — TanStack Start on Cloudflare Workers.
 
 ## Develop
 
 ```bash
 npm install
 npm run dev
+```
+
+## Build / deploy
+
+```bash
+npm run build
+npm run preview   # local Workers preview
+npm run deploy    # build + wrangler deploy
 ```
 
 ## Content
@@ -20,5 +28,5 @@ Drafts: underscore-prefixed filenames (`_wip.md`) or `draft: true`. Future-dated
 Optional:
 
 ```bash
-NEXT_PUBLIC_SITE_URL=https://vblinden.dev
+VITE_SITE_URL=https://vblinden.dev
 ```

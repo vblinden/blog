@@ -1,0 +1,10 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { atomResponse, getAtomFeed } from "@/lib/feed";
+
+export const Route = createFileRoute("/feed.xml")({
+  server: {
+    handlers: {
+      GET: async () => atomResponse(await getAtomFeed()),
+    },
+  },
+});

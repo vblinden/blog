@@ -1,6 +1,5 @@
-import { cacheLife } from "next/cache";
-import { getAllPostsWithContent } from "@/lib/posts";
-import { absoluteUrl, site } from "@/lib/site";
+import { getAllPostsWithContent } from "./posts";
+import { absoluteUrl, site } from "./site";
 
 function escapeXml(value: string): string {
   return value
@@ -11,10 +10,7 @@ function escapeXml(value: string): string {
     .replace(/'/g, "&apos;");
 }
 
-async function getAtomFeed(): Promise<string> {
-  "use cache";
-  cacheLife("minutes");
-
+export async function getAtomFeed(): Promise<string> {
   const posts = await getAllPostsWithContent();
   const updatedAt =
     posts[0]?.publishedAtIso8601 ?? new Date().toISOString();
@@ -65,9 +61,7 @@ async function getAtomFeed(): Promise<string> {
 </feed>`;
 }
 
-export async function GET() {
-  const xml = await getAtomFeed();
-
+export function atomResponse(xml: string): Response {
   return new Response(xml, {
     headers: {
       "Content-Type": "application/atom+xml; charset=UTF-8",

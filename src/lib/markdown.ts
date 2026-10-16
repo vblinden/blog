@@ -5,6 +5,10 @@ import remarkRehype from "remark-rehype";
 import rehypeRaw from "rehype-raw";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeStringify from "rehype-stringify";
+import { createHighlighter } from "shiki";
+import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
+
+const jsEngine = createJavaScriptRegexEngine();
 
 const processor = unified()
   .use(remarkParse)
@@ -18,6 +22,11 @@ const processor = unified()
     },
     defaultLang: "plaintext",
     keepBackground: true,
+    getHighlighter: (options) =>
+      createHighlighter({
+        ...options,
+        engine: jsEngine,
+      }),
   })
   .use(rehypeStringify, { allowDangerousHtml: true });
 

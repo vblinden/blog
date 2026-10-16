@@ -6,7 +6,9 @@ export const site = {
   locale: "en_US",
   description:
     "Personal blog of Vincent van der Linden (vblinden) about software engineering, side projects, deployment, Laravel, and practical lessons from building things.",
-  url: process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://vblinden.dev",
+  url:
+    (import.meta.env.VITE_SITE_URL as string | undefined)?.replace(/\/$/, "") ||
+    "https://vblinden.dev",
   social: {
     github: "https://github.com/vblinden",
     x: "https://x.com/vblinden",

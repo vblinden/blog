@@ -1,70 +1,52 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { notFound } from "next/navigation";
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { JsonLd } from "@/components/json-ld";
-import {
-  getPostSlugs,
-  getPostWithAdjacent,
-  wordCount,
-} from "@/lib/posts";
+import { getPostWithAdjacent, wordCount } from "@/lib/posts";
 import { absoluteUrl, site } from "@/lib/site";
+import { pageHead } from "@/lib/head";
 
-export async function generateStaticParams() {
-  const slugs = await getPostSlugs();
-  return slugs.map((slug) => ({ slug }));
-}
+export const Route = createFileRoute("/posts/$slug")({
+  loader: async ({ params }) => {
+    const result = await getPostWithAdjacent(params.slug);
+    if (!result.post) {
+      throw notFound();
+    }
+    return result;
+  },
+  head: ({ loaderData }) => {
+    if (!loaderData?.post) {
+      return { meta: [{ title: "Not found" }] };
+    }
 
-export async function generateMetadata({
-  params,
-}: PageProps<"/posts/[slug]">): Promise<Metadata> {
-  const { slug } = await params;
-  const { post } = await getPostWithAdjacent(slug);
-
-  if (!post) {
-    return { title: "Not found" };
-  }
-
-  return {
-    title: post.title,
-    description: post.description,
-    alternates: {
-      canonical: `/posts/${post.slug}`,
-    },
-    openGraph: {
+    const { post, newer, older } = loaderData;
+    const base = pageHead({
+      title: post.title,
+      description: post.description,
+      path: `/posts/${post.slug}`,
       type: "article",
-      title: `${post.title} - ${site.title}`,
-      description: post.description,
-      url: `/posts/${post.slug}`,
-      publishedTime: post.publishedAtIso8601 ?? undefined,
-      modifiedTime: post.publishedAtIso8601 ?? undefined,
-      authors: [site.author],
-      section: "Software engineering",
-    },
-    twitter: {
-      title: `${post.title} - ${site.title}`,
-      description: post.description,
-    },
-    other: {
-      ...(post.publishedAtIso8601
-        ? {
-            "article:published_time": post.publishedAtIso8601,
-            "article:modified_time": post.publishedAtIso8601,
-          }
-        : {}),
-      "article:author": site.author,
-      "article:section": "Software engineering",
-    },
-  };
-}
+      publishedTime: post.publishedAtIso8601,
+    });
 
-export default async function PostPage({
-  params,
-}: PageProps<"/posts/[slug]">) {
-  const { slug } = await params;
-  const { post, newer, older } = await getPostWithAdjacent(slug);
+    return {
+      ...base,
+      links: [
+        ...base.links,
+        ...(older
+          ? [{ rel: "prev", href: `/posts/${older.slug}` }]
+          : []),
+        ...(newer
+          ? [{ rel: "next", href: `/posts/${newer.slug}` }]
+          : []),
+      ],
+    };
+  },
+  component: PostPage,
+});
+
+function PostPage() {
+  const { post, newer, older } = Route.useLoaderData();
 
   if (!post) {
-    notFound();
+    return null;
   }
 
   const canonicalUrl = absoluteUrl(`/posts/${post.slug}`);
@@ -130,8 +112,6 @@ export default async function PostPage({
   return (
     <>
       <JsonLd data={jsonLd} />
-      {older && <link rel="prev" href={`/posts/${older.slug}`} />}
-      {newer && <link rel="next" href={`/posts/${newer.slug}`} />}
 
       <article className="article">
         <header className="article-header">
@@ -162,7 +142,9 @@ export default async function PostPage({
             {older && (
               <>
                 <span className="article-nav-label">Older</span>
-                <Link href={`/posts/${older.slug}`}>{older.title}</Link>
+                <Link to="/posts/$slug" params={{ slug: older.slug }}>
+                  {older.title}
+                </Link>
               </>
             )}
           </div>
@@ -170,17 +152,19 @@ export default async function PostPage({
             {newer && (
               <>
                 <span className="article-nav-label">Newer</span>
-                <Link href={`/posts/${newer.slug}`}>{newer.title}</Link>
+                <Link to="/posts/$slug" params={{ slug: newer.slug }}>
+                  {newer.title}
+                </Link>
               </>
             )}
           </div>
         </nav>
 
         <footer className="article-footer">
-          <Link className="page-nav" href="/">
+          <Link className="page-nav" to="/">
             ← Home
           </Link>
-          <Link href="/posts">Go to all posts</Link>
+          <Link to="/posts">Go to all posts</Link>
         </footer>
       </article>
     </>
