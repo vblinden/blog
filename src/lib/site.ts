@@ -72,6 +72,7 @@ export const projects: Project[] = [
     url: "https://chatwithyoursite.com",
     description:
       "Turn your site, PDFs, and notes into a grounded chatbot and search API that answers from your own content.",
+    status: "sunset",
   },
   {
     name: "goutipedia.com",
