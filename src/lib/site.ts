@@ -61,13 +61,6 @@ export const projects: Project[] = [
       "Quieter error tracking for developers. Fewer dashboards, clearer signals, and less noise when things break.",
   },
   {
-    name: "pennymetrics.dev",
-    url: "https://pennymetrics.dev",
-    description:
-      "Privacy-friendly web analytics without cookies or consent banners. The numbers that matter, nothing else.",
-    status: "sunset",
-  },
-  {
     name: "chatwithyoursite.com",
     url: "https://chatwithyoursite.com",
     description:
