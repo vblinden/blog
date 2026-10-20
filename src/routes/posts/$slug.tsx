@@ -6,7 +6,7 @@ import { pageHead } from "@/lib/head";
 
 export const Route = createFileRoute("/posts/$slug")({
   loader: async ({ params }) => {
-    const result = await getPostWithAdjacent(params.slug);
+    const result = await getPostWithAdjacent({ data: { slug: params.slug } });
     if (!result.post) {
       throw notFound();
     }
